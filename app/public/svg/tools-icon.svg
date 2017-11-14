@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="13px" height="15px" viewBox="0 0 13 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47 (45396) - http://www.bohemiancoding.com/sketch -->
+    <title>Polygon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.531306612">
+        <g id="project" transform="translate(-239.000000, -231.000000)" stroke="#FFFFFF">
+            <g id="Overrides/Icons/Icon-5" transform="translate(239.000000, 230.000000)">
+                <path d="M7.24145143,1.78787091 C6.78171421,1.52645259 6.21828579,1.52645259 5.75854857,1.78787091 L1.25854857,4.34668575 C0.789635815,4.61332151 0.5,5.11120214 0.5,5.65062201 L0.5,10.7158039 C0.5,11.2552238 0.789635815,11.7531044 1.25854857,12.0197402 L5.75854857,14.578555 C6.21828579,14.8399734 6.78171421,14.8399734 7.24145143,14.578555 L11.7414514,12.0197402 C12.2103642,11.7531044 12.5,11.2552238 12.5,10.7158039 L12.5,5.65062201 C12.5,5.11120214 12.2103642,4.61332151 11.7414514,4.34668575 L7.24145143,1.78787091 Z" id="Polygon"></path>
+            </g>
+        </g>
+    </g>
+</svg>
