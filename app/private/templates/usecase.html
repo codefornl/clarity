@@ -29,7 +29,7 @@
             <a href="/{{ usecase._embedded.cbase.slug }}" class="back-link layout__back">&larr; Back to overview</a>
 
             <article class="project-detail layout__project-detail">
-                <div class="project-detail__image" style="background-image: url(http://img.codefor.nl?url={{ usecase.image }}&height=426&width=640)">
+                <div class="project-detail__image" style="background-image: url(http://img.codefor.nl?url={{ usecase.image|url_encode }}&height=426&width=640)">
                     <div class="project-detail__overlay">
                         <h1 class="project-detail__title">{{ usecase.name }}</h1>
                         <h2 class="project-detail__location">{{ usecase.organisation }} ({{ usecase.country }})</h2>

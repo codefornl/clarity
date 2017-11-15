@@ -37,7 +37,8 @@ class Handler {
                 slug,
                 description,
                 admin_name,
-                admin_email
+                admin_email,
+                image
             FROM
                 cbases
             WHERE id = :id
@@ -59,7 +60,8 @@ class Handler {
                 slug,
                 description,
                 admin_name,
-                admin_email
+                admin_email,
+                image
             FROM
                 cbases
             WHERE slug = :slug

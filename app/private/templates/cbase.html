@@ -55,7 +55,7 @@
 
                 <a href="/{{ cbase.slug }}/{{ usecase.slug }}">
                     <div class="project layout__project-list-item">
-                        <img src="http://img.codefor.nl?url={{ usecase.image }}&height=426&width=640" class="project__image">
+                        <img src="http://img.codefor.nl?url={{ usecase.image|url_encode }}&height=426&width=640" class="project__image">
                         <div class="project__meta">
                             <div class="project__summary">
                                 <h3 class="project__title">{{ usecase.name }}</h3>
