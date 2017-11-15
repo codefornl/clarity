@@ -32,7 +32,7 @@
             <div class="layout__list-meta">
 
                 <div class="list-summary">
-                    <a href="/{{ cbase.slug }}">
+                    <a href="/cbase/{{ cbase.slug }}">
                         <h2 class="list-summary__title">{{ cbase.name }}</h2>
                     </a>
                     <div class="list-summary__count">{{ cbase._embedded.usecase|length }} use cases</div>
@@ -55,7 +55,7 @@
 
 {% for usecase in cbase._embedded.usecase %}
                 
-                <a href="/{{ cbase.slug }}/{{ usecase.slug }}">
+                <a href="/cbase/{{ cbase.slug }}/usecase/{{ usecase.slug }}">
                     <div class="project layout__project-list-item">
                         <img src="http://img.codefor.nl?url={{ usecase.image|url_encode }}&height=426&width=640" class="project__image">
                         <div class="project__meta">
@@ -73,7 +73,7 @@
                 
 {% endfor %}
 
-                <a href="/Clarity">
+                <a href="/cbase/{{ cbase.slug }}">
                     <div class="project layout__project-list-item">
                         <img src="http://img.codefor.nl/?url=http://www.cbase.eu/img/cbase_screen.png&height=426&width=640" class="project__image">
                         <div class="project__meta">

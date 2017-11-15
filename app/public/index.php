@@ -43,7 +43,15 @@ $app->get('/', function (Request $request, Response $response) {
     ]);
 });
 
-$app->get('/{cbase_slug}', function (Request $request, Response $response) {
+$app->get('/edit/{cbase_token}', function (Request $request, Response $response) {
+    $cbase_token = $request->getAttribute("cbase_token");
+    //$usecase = json_decode($this->client->get('/usecases/' . $usecase_slug)->getBody(), true)["usecase"];
+    return $this->view->render($response, 'edit.html', [
+        'cbase_token' => $cbase_token
+    ]);
+});
+
+$app->get('/cbase/{cbase_slug}', function (Request $request, Response $response) {
     $cbase_slug = $request->getAttribute("cbase_slug");
     $cbase = json_decode($this->client->get('/cbases/' . $cbase_slug)->getBody(), true)["cbase"];
     return $this->view->render($response, 'cbase.html', [
@@ -51,7 +59,7 @@ $app->get('/{cbase_slug}', function (Request $request, Response $response) {
     ]);
 });
 
-$app->get('/{cbase_slug}/{usecase_slug}', function (Request $request, Response $response) {
+$app->get('/cbase/{cbase_slug}/usecase/{usecase_slug}', function (Request $request, Response $response) {
     $usecase_slug = $request->getAttribute("usecase_slug");
     $usecase = json_decode($this->client->get('/usecases/' . $usecase_slug)->getBody(), true)["usecase"];
     return $this->view->render($response, 'usecase.html', [
