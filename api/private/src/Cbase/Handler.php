@@ -15,6 +15,7 @@ class Handler {
             SELECT
                 id,
                 name,
+                slug,
                 description,
                 admin_name,
                 admin_email,
@@ -33,6 +34,7 @@ class Handler {
             SELECT
                 id,
                 name,
+                slug,
                 description,
                 admin_name,
                 admin_email

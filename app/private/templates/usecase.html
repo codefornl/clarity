@@ -35,7 +35,7 @@
                     <a href="/Clarity">
                         <h2 class="list-summary__title">{{ cbase.name }}</h2>
                     </a>
-                    <div class="list-summary__count">{{ cbase._embedded.usecase|length }} use cases</div>
+                    <div class="list-summary__count">{{ cbase.usecases|length }} use cases</div>
                     <p class="list-summary__description"></p>
                     <div class="list-summary__curator">
                         <div class="curator">
@@ -53,9 +53,9 @@
 
             <div class="layout__project-list">
 
-{% for usecase in cbase._embedded.usecase %}
+{% for usecase in cbase.usecases %}
                 
-                <a href="/{{ usecase.name }}">
+                <a href="/Clarity/1/Seg-Social Seg. Social Móvil">
                     <div class="project layout__project-list-item">
                         <img src="http://img.codefor.nl?url={{ usecase.image }}&height=426&width=640" class="project__image">
                         <div class="project__meta">

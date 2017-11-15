@@ -43,4 +43,19 @@ $app->get('/', function (Request $request, Response $response) {
     ]);
 });
 
+$app->get('/{cbase_slug}', function (Request $request, Response $response) {
+    $cbase_slug = $request->getAttribute("cbase_slug");
+    $cbase = json_decode($this->client->get('/cbases/' . $cbase_slug)->getBody(), true)["cbase"];
+    return $this->view->render($response, 'cbase.html', [
+        'cbase' => $cbase
+    ]);
+});
+
+$app->get('/{cbase_slug}/{usecase_slug}', function (Request $request, Response $response) {
+    $usecase = json_decode($this->client->get('/usecases/' . $usecase_slug)->getBody(), true)["usecase"];
+    return $this->view->render($response, 'usecase.html', [
+        'usecase' => $usecase
+    ]);
+});
+
 $app->run();

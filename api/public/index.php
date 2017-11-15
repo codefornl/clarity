@@ -20,6 +20,7 @@ $app->options('/{routes:.+}', function ($request, $response, $args) {
 $app->add(function ($req, $res, $next) {
     $response = $next($req, $res);
     return $response
+            ->withHeader('Content-type', 'application/hal+json')
             ->withHeader('Access-Control-Allow-Origin', '*')
             ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
             ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
@@ -44,14 +45,34 @@ $container['handler'] = function($c) {
 // routing
 $app->get('/', function (Request $request, Response $response) {
     return $response->withJson([
-        "service" => "clarity cbase"
+        "service" => "clarity cbase",
+        "_links" => [
+            "self" => $request->getUri()->getBaseUrl(),
+            "cbases" => $request->getUri()->getBaseUrl() . "/cbases",
+            "usecases" => $request->getUri()->getBaseUrl() . "/usecases"
+        ]
     ]);
 });
 
 $app->get('/cbases', function (Request $request, Response $response) {
     $cbases = $this->handler->getCbases();
     foreach ($cbases as &$cbase) {
-        $cbase["usecases"] = $this->handler->getUsecasesByCbaseId($cbase["id"]);
+        $cbase["_links"] = [
+            "self" => $request->getUri()->getBaseUrl() . "/cbases/{$cbase["id"]}",
+            "cbases" => $request->getUri()->getBaseUrl() . "/cbases",
+            "home" => $request->getUri()->getBaseUrl()
+        ];
+        $usecases = $this->handler->getUsecasesByCbaseId($cbase["id"]);
+        foreach ($usecases as &$usecase) {
+            $usecase["_links"] = [
+                "self" => $request->getUri()->getBaseUrl() . "/usecases/{$usecase["id"]}",
+                "usecases" => $request->getUri()->getBaseUrl() . "/usecases",
+                "home" => $request->getUri()->getBaseUrl()
+            ];
+        }
+        $cbase["_embedded"] = [
+            "usecase" => $usecases
+        ];
     }
     return $response->withJson([
         "cbases" => $cbases
@@ -59,20 +80,69 @@ $app->get('/cbases', function (Request $request, Response $response) {
 });
 
 $app->get('/cbases/{cbaseId}', function (Request $request, Response $response) {
+    $cbase = $this->handler->getCbaseById($request->getAttribute('cbaseId'));
+    $cbase["_links"] = [
+        "self" => $request->getUri()->getBaseUrl() . "/cbases/{$cbase["id"]}",
+        "cbases" => $request->getUri()->getBaseUrl() . "/cbases",
+        "home" => $request->getUri()->getBaseUrl()
+    ];
+    $usecases = $this->handler->getUsecasesByCbaseId($cbase["id"]);
+    foreach ($usecases as &$usecase) {
+        $usecase["_links"] = [
+            "self" => $request->getUri()->getBaseUrl() . "/usecases/{$usecase["id"]}",
+            "usecases" => $request->getUri()->getBaseUrl() . "/usecases",
+            "home" => $request->getUri()->getBaseUrl()
+        ];
+    }
+    $cbase["_embedded"] = [
+        "usecase" => $usecases
+    ];
     return $response->withJson([
-        "cbase" => $this->handler->getCbaseById($request->getAttribute('cbaseId'))
+        "cbase" => $cbase
     ]);
 });
 
 $app->get('/usecases', function (Request $request, Response $response) {
+    $usecases = $this->handler->getUsecases();
+    foreach ($usecases as &$usecase) {
+        $usecase["_links"] = [
+            "self" => $request->getUri()->getBaseUrl() . "/usecases/{$usecase["id"]}",
+            "usecases" => $request->getUri()->getBaseUrl() . "/usecases",
+            "home" => $request->getUri()->getBaseUrl()
+        ];
+        $cbase = $this->handler->getCbaseById($usecase["cbase_id"]);
+        $cbase["_links"] = [
+            "self" => $request->getUri()->getBaseUrl() . "/cbases/{$cbase["id"]}",
+            "cbases" => $request->getUri()->getBaseUrl() . "/cbases",
+            "home" => $request->getUri()->getBaseUrl()
+        ];
+        $usecase["_embedded"] = [
+            "cbase" => $cbase
+        ];
+    }
     return $response->withJson([
-        "usecases" => $this->handler->getUsecases()
+        "usecases" => $usecases
     ]);
 });
 
 $app->get('/usecases/{usecaseId}', function (Request $request, Response $response) {
+    $usecase = $this->handler->getUsecaseById($request->getAttribute('usecaseId'));
+    $usecase["_links"] = [
+        "self" => $request->getUri()->getBaseUrl() . "/usecases/{$usecase["id"]}",
+        "usecases" => $request->getUri()->getBaseUrl() . "/usecases",
+        "home" => $request->getUri()->getBaseUrl()
+    ];
+    $cbase = $this->handler->getCbaseById($usecase["cbase_id"]);
+    $cbase["_links"] = [
+        "self" => $request->getUri()->getBaseUrl() . "/cbases/{$cbase["id"]}",
+        "cbases" => $request->getUri()->getBaseUrl() . "/cbases",
+        "home" => $request->getUri()->getBaseUrl()
+    ];
+    $usecase["_embedded"] = [
+        "cbase" => $cbase
+    ];
     return $response->withJson([
-        "usecase" => $this->handler->getUsecaseById($request->getAttribute('usecaseId'))
+        "usecase" => $usecase
     ]);
 });
 
