@@ -52,6 +52,7 @@ $app->get('/{cbase_slug}', function (Request $request, Response $response) {
 });
 
 $app->get('/{cbase_slug}/{usecase_slug}', function (Request $request, Response $response) {
+    $usecase_slug = $request->getAttribute("usecase_slug");
     $usecase = json_decode($this->client->get('/usecases/' . $usecase_slug)->getBody(), true)["usecase"];
     return $this->view->render($response, 'usecase.html', [
         'usecase' => $usecase

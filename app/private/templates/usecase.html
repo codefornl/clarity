@@ -3,13 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Clarity Market Place</title>
+    <title>Clarity Market Place - Maidstone Council</title>
     <link href="/css/foundation.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet" type="text/css">
     <link href="/css/additions.css" rel="stylesheet" type="text/css">
 </head>
-
 <body class="layout">
 
     <header class="main-header layout__main-header">
@@ -20,78 +19,62 @@
 
     <main class="main-content layout__main-content">
 
-        <form class="searchbar layout__searchbar" style="visibility: hidden">
-            <input type="text" class="searchbar__input" placeholder="Search eGovernment applications" name="q" value="">
+        <form class="searchbar layout__searchbar">
+            <input type="text" class="searchbar__input" placeholder="Search {{ usecase._embedded.cbase.name }} use cases">
             <button class="searchbar__button"><img src="/svg/searchbar-icon.svg"></button>
         </form>
-        
-{% for cbase in cbases %}
 
         <div class="layout__row">
 
-            <div class="layout__list-meta">
+            <a href="/{{ usecase._embedded.cbase.slug }}" class="back-link layout__back">&larr; Back to overview</a>
 
-                <div class="list-summary">
-                    <a href="/Clarity">
-                        <h2 class="list-summary__title">{{ cbase.name }}</h2>
-                    </a>
-                    <div class="list-summary__count">{{ cbase.usecases|length }} use cases</div>
-                    <p class="list-summary__description"></p>
-                    <div class="list-summary__curator">
-                        <div class="curator">
-                            <img src="{{ cbase.image }}" class="curator__avatar">
-                            <div class="curator__contact">
-                                <h3 class="curator__name">{{ cbase.admin_name }}</h3>
-                                <div class="curator__badge">curator</div>
-                                <a href="mailto:{{ cbase.admin_email }}" class="curator__email">{{ cbase.admin_email }}</a>
-                            </div>
+            <article class="project-detail layout__project-detail">
+                <div class="project-detail__image" style="background-image: url(http://img.codefor.nl?url={{ usecase.image }}&height=426&width=640)">
+                    <div class="project-detail__overlay">
+                        <h1 class="project-detail__title">{{ usecase.name }}</h1>
+                        <h2 class="project-detail__location">{{ usecase.organisation }} ({{ usecase.country }})</h2>
+                    </div>
+                </div>
+                <div class="wrapper__text">
+                    <p class="introduction">{{ usecase.teaser }}</p>
+
+                    <p>{{ usecase.description }}</p>
+
+                    <p><a href="{{ usecase.website }}">{{ usecase.website }}</a></p>
+                </div>
+            </article>
+
+            <aside class="project-meta layout__project-meta">
+
+                <div class="project-meta__item">
+                    <h3 class="project-meta__header">Category</h3>
+                    <p class="project-meta__text">{{ usecase.category }}</p>
+                </div>
+
+                <div class="project-meta__item">
+                    <h3 class="project-meta__header">Type</h3>
+                    <p class="project-meta__text">{{ usecase.type }}</p>
+                </div>
+
+                <div class="project-meta__item">
+                    <h3 class="project-meta__header">Tools</h3>
+                    <a href="#" class="project-meta__link">iTouchVision</a>
+                </div>
+
+                <div class="project-meta__curator">
+                    <div class="curator">
+                        <img src="{{ usecase.image }}" class="curator__avatar">
+                        <div class="curator__contact">
+                            <h3 class="curator__name">{{ usecase.contact_name }}</h3>
+                            <div class="curator__badge">contact</div>
+                            <a href="mailto:{{ usecase.contact_email }}" class="curator__email">{{ usecase.contact_email }}</a>
                         </div>
                     </div>
                 </div>
 
-            </div>
+            </aside>
 
-            <div class="layout__project-list">
-
-{% for usecase in cbase.usecases %}
-                
-                <a href="/Clarity/1/Seg-Social Seg. Social Móvil">
-                    <div class="project layout__project-list-item">
-                        <img src="http://img.codefor.nl?url={{ usecase.image }}&height=426&width=640" class="project__image">
-                        <div class="project__meta">
-                            <div class="project__summary">
-                                <h3 class="project__title">{{ usecase.name }}</h3>
-                                <h4 class="project__location">{{ usecase.organisation }}</h4>
-                            </div>
-                            <div class="project__tools">
-                                <img src="/svg/tools-icon.svg" class="project__tools-icon">
-                                <span class="project__tools-count">{{ usecase.tools|length }} tool</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                
-{% endfor %}
-
-                <a href="/Clarity">
-                    <div class="project layout__project-list-item">
-                        <img src="http://img.codefor.nl/?url=http://www.cbase.eu/img/cbase_screen.png&height=426&width=640" class="project__image">
-                        <div class="project__meta">
-                            <div class="project__summary">
-                                <h3 class="project__title">MORE »</h3>
-                                <h4 class="project__location"></h4>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-            </div>
         </div>
-        
-        <hr>
-        
-{% endfor %}
-        
     </main>
 </body>
 </html>

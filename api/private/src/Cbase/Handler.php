@@ -51,6 +51,28 @@ class Handler {
         return $cbase;
     }
     
+    public function getCbaseBySlug($cbaseSlug) {
+        $sql = "
+            SELECT
+                id,
+                name,
+                slug,
+                description,
+                admin_name,
+                admin_email
+            FROM
+                cbases
+            WHERE slug = :slug
+            LIMIT 1
+        ";
+        $stmt = $this->_pdo->prepare($sql);
+        $stmt->execute([
+            "slug" => $cbaseSlug
+        ]);
+        $cbase = $stmt->fetch();
+        return $cbase;
+    }
+    
     public function getUsecases() {
         $sql = "
             SELECT
@@ -76,6 +98,23 @@ class Handler {
         $stmt = $this->_pdo->prepare($sql);
         $stmt->execute([
             "id" => (int)$usecaseId
+        ]);
+        $usecase = $stmt->fetch();
+        return $usecase;
+    }
+    
+    public function getUsecaseBySlug($usecaseSlug) {
+        $sql = "
+            SELECT
+                *
+            FROM
+                projects
+            WHERE slug = :slug
+            LIMIT 1
+        ";
+        $stmt = $this->_pdo->prepare($sql);
+        $stmt->execute([
+            "slug" => $usecaseSlug
         ]);
         $usecase = $stmt->fetch();
         return $usecase;

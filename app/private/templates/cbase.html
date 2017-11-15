@@ -20,22 +20,20 @@
 
     <main class="main-content layout__main-content">
 
-        <form class="searchbar layout__searchbar" style="visibility: hidden">
-            <input type="text" class="searchbar__input" placeholder="Search eGovernment applications" name="q" value="">
+        <form class="searchbar layout__searchbar">
+            <input type="text" class="searchbar__input" placeholder="Search {{ cbase.name }} use cases" name="q" value="">
             <button class="searchbar__button"><img src="/svg/searchbar-icon.svg"></button>
         </form>
-        
-{% for cbase in cbases %}
 
         <div class="layout__row">
 
             <div class="layout__list-meta">
 
                 <div class="list-summary">
-                    <a href="/Clarity">
+                    <a href="/{{ cbase.slug }}">
                         <h2 class="list-summary__title">{{ cbase.name }}</h2>
                     </a>
-                    <div class="list-summary__count">{{ cbase.usecases|length }} use cases</div>
+                    <div class="list-summary__count">{{ cbase._embedded.usecase|length }} use cases</div>
                     <p class="list-summary__description"></p>
                     <div class="list-summary__curator">
                         <div class="curator">
@@ -53,9 +51,9 @@
 
             <div class="layout__project-list">
 
-{% for usecase in cbase.usecases %}
-                
-                <a href="/Clarity/1/Seg-Social Seg. Social Móvil">
+{% for usecase in cbase._embedded.usecase %}
+
+                <a href="/{{ cbase.slug }}/{{ usecase.slug }}">
                     <div class="project layout__project-list-item">
                         <img src="http://img.codefor.nl?url={{ usecase.image }}&height=426&width=640" class="project__image">
                         <div class="project__meta">
@@ -70,7 +68,7 @@
                         </div>
                     </div>
                 </a>
-                
+
 {% endfor %}
 
                 <a href="/Clarity">
@@ -87,10 +85,6 @@
 
             </div>
         </div>
-        
-        <hr>
-        
-{% endfor %}
         
     </main>
 </body>

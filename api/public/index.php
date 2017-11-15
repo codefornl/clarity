@@ -59,6 +59,7 @@ $app->get('/cbases', function (Request $request, Response $response) {
     foreach ($cbases as &$cbase) {
         $cbase["_links"] = [
             "self" => $request->getUri()->getBaseUrl() . "/cbases/{$cbase["id"]}",
+            "self_slug" => $request->getUri()->getBaseUrl() . "/cbases/{$cbase["slug"]}",
             "cbases" => $request->getUri()->getBaseUrl() . "/cbases",
             "home" => $request->getUri()->getBaseUrl()
         ];
@@ -66,6 +67,7 @@ $app->get('/cbases', function (Request $request, Response $response) {
         foreach ($usecases as &$usecase) {
             $usecase["_links"] = [
                 "self" => $request->getUri()->getBaseUrl() . "/usecases/{$usecase["id"]}",
+                "self_slug" => $request->getUri()->getBaseUrl() . "/usecases/{$usecase["slug"]}",
                 "usecases" => $request->getUri()->getBaseUrl() . "/usecases",
                 "home" => $request->getUri()->getBaseUrl()
             ];
@@ -80,9 +82,16 @@ $app->get('/cbases', function (Request $request, Response $response) {
 });
 
 $app->get('/cbases/{cbaseId}', function (Request $request, Response $response) {
-    $cbase = $this->handler->getCbaseById($request->getAttribute('cbaseId'));
+    $cbaseId = $request->getAttribute('cbaseId');
+    if (is_numeric($cbaseId)) {
+        $cbase = $this->handler->getCbaseById($cbaseId);
+    } else {
+        $cbaseSlug = $cbaseId;
+        $cbase = $this->handler->getCbaseBySlug($cbaseSlug);
+    }
     $cbase["_links"] = [
         "self" => $request->getUri()->getBaseUrl() . "/cbases/{$cbase["id"]}",
+        "self_slug" => $request->getUri()->getBaseUrl() . "/cbases/{$cbase["slug"]}",
         "cbases" => $request->getUri()->getBaseUrl() . "/cbases",
         "home" => $request->getUri()->getBaseUrl()
     ];
@@ -90,6 +99,7 @@ $app->get('/cbases/{cbaseId}', function (Request $request, Response $response) {
     foreach ($usecases as &$usecase) {
         $usecase["_links"] = [
             "self" => $request->getUri()->getBaseUrl() . "/usecases/{$usecase["id"]}",
+            "self_slug" => $request->getUri()->getBaseUrl() . "/usecases/{$usecase["slug"]}",
             "usecases" => $request->getUri()->getBaseUrl() . "/usecases",
             "home" => $request->getUri()->getBaseUrl()
         ];
@@ -107,12 +117,14 @@ $app->get('/usecases', function (Request $request, Response $response) {
     foreach ($usecases as &$usecase) {
         $usecase["_links"] = [
             "self" => $request->getUri()->getBaseUrl() . "/usecases/{$usecase["id"]}",
+            "self_slug" => $request->getUri()->getBaseUrl() . "/usecases/{$usecase["slug"]}",
             "usecases" => $request->getUri()->getBaseUrl() . "/usecases",
             "home" => $request->getUri()->getBaseUrl()
         ];
         $cbase = $this->handler->getCbaseById($usecase["cbase_id"]);
         $cbase["_links"] = [
             "self" => $request->getUri()->getBaseUrl() . "/cbases/{$cbase["id"]}",
+            "self_slug" => $request->getUri()->getBaseUrl() . "/cbases/{$cbase["slug"]}",
             "cbases" => $request->getUri()->getBaseUrl() . "/cbases",
             "home" => $request->getUri()->getBaseUrl()
         ];
@@ -126,15 +138,23 @@ $app->get('/usecases', function (Request $request, Response $response) {
 });
 
 $app->get('/usecases/{usecaseId}', function (Request $request, Response $response) {
-    $usecase = $this->handler->getUsecaseById($request->getAttribute('usecaseId'));
+    $usecaseId = $request->getAttribute('usecaseId');
+    if (is_numeric($usecaseId)) {
+        $usecase = $this->handler->getUsecaseById($usecaseId);
+    } else {
+        $usecaseSlug = $usecaseId;
+        $usecase = $this->handler->getUsecaseBySlug($usecaseSlug);
+    }
     $usecase["_links"] = [
         "self" => $request->getUri()->getBaseUrl() . "/usecases/{$usecase["id"]}",
+        "self_slug" => $request->getUri()->getBaseUrl() . "/usecases/{$usecase["slug"]}",
         "usecases" => $request->getUri()->getBaseUrl() . "/usecases",
         "home" => $request->getUri()->getBaseUrl()
     ];
     $cbase = $this->handler->getCbaseById($usecase["cbase_id"]);
     $cbase["_links"] = [
         "self" => $request->getUri()->getBaseUrl() . "/cbases/{$cbase["id"]}",
+        "self_slug" => $request->getUri()->getBaseUrl() . "/cbases/{$cbase["slug"]}",
         "cbases" => $request->getUri()->getBaseUrl() . "/cbases",
         "home" => $request->getUri()->getBaseUrl()
     ];
