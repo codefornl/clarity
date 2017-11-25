@@ -21,7 +21,9 @@ $app->add(function ($req, $res, $next) {
     $response = $next($req, $res);
     return $response
             ->withHeader('Content-type', 'application/hal+json')
-            ->withHeader('Access-Control-Allow-Origin', '*')
+            //->withHeader('Access-Control-Allow-Origin', '*')
+            ->withHeader('Access-Control-Allow-Origin', $req->getHeader('Origin')) // FIXME ?
+            ->withHeader('Access-Control-Allow-Credentials', 'true') // FIXME ?
             ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
             ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
 });
@@ -38,50 +40,62 @@ $container['db'] = function($c) {
     return $pdo;
 };
 $container['handler'] = function($c) {
-    $handler = new \Cbase\Handler($c['db']);
+    $handler = new \Cbase\Handler($c['db'], $c['settings']['root_pass']);
     return $handler;
 };
 
-// routing
+/**
+ * GET /
+ * 
+ * Get api home.
+ */
 $app->get('/', function (Request $request, Response $response) {
     return $response->withJson([
-        "service" => "clarity cbase",
+        "service" => "cbase: clarity curated sets of use cases",
+        "about" => "http://www.cbase.eu",
+        "browser" => "http://haltalk.herokuapp.com/explorer/browser.html#http://api.cbase.eu/",
+        "application" => "http://app.cbase.eu",
+        "codebase" => "https://github.com/codefornl/clarity_slim",
         "_links" => [
-            "self" => $request->getUri()->getBaseUrl(),
-            "cbases" => $request->getUri()->getBaseUrl() . "/cbases",
-            "usecases" => $request->getUri()->getBaseUrl() . "/usecases"
+            "self" => [
+                "href" => $request->getUri()->getBaseUrl()
+            ],
+            "cbases" => [
+                "href" => $request->getUri()->getBaseUrl() . "/cbases"
+            ],
+            "usecases" => [
+                "href" => $request->getUri()->getBaseUrl() . "/usecases"
+            ]
         ]
     ]);
 });
 
-$app->get('/cbases', function (Request $request, Response $response) {
-    $cbases = $this->handler->getCbases();
-    foreach ($cbases as &$cbase) {
-        $cbase["_links"] = [
-            "self" => $request->getUri()->getBaseUrl() . "/cbases/{$cbase["id"]}",
-            "self_slug" => $request->getUri()->getBaseUrl() . "/cbases/{$cbase["slug"]}",
-            "cbases" => $request->getUri()->getBaseUrl() . "/cbases",
-            "home" => $request->getUri()->getBaseUrl()
-        ];
-        $usecases = $this->handler->getUsecasesByCbaseId($cbase["id"]);
-        foreach ($usecases as &$usecase) {
-            $usecase["_links"] = [
-                "self" => $request->getUri()->getBaseUrl() . "/usecases/{$usecase["id"]}",
-                "self_slug" => $request->getUri()->getBaseUrl() . "/usecases/{$usecase["slug"]}",
-                "usecases" => $request->getUri()->getBaseUrl() . "/usecases",
-                "home" => $request->getUri()->getBaseUrl()
-            ];
-        }
-        $cbase["_embedded"] = [
-            "usecase" => $usecases
-        ];
+/**
+ * GET /cbases/<cbaseId>/token/<token>
+ * 
+ * Get cbase token.
+ */
+$app->get('/cbases/{cbaseId}/token/{token}', function (Request $request, Response $response) {
+    $cbaseId = $request->getAttribute('cbaseId');
+    $token = $request->getAttribute('token');
+    if (is_numeric($cbaseId)) {
+        $cbase = $this->handler->getCbaseById($cbaseId);
+    } else {
+        $cbaseSlug = $cbaseId;
+        $cbase = $this->handler->getCbaseBySlug($cbaseSlug);
     }
+    $token = $this->handler->getCbaseTokenIfValid($cbase, $token);
     return $response->withJson([
-        "cbases" => $cbases
+        "token" => $token
     ]);
 });
 
-$app->get('/cbases/{cbaseId}', function (Request $request, Response $response) {
+/**
+ * POST /cbases/<cbaseId>/token
+ * 
+ * Create cbase token.
+ */
+$app->post('/cbases/{cbaseId}/token', function (Request $request, Response $response) {
     $cbaseId = $request->getAttribute('cbaseId');
     if (is_numeric($cbaseId)) {
         $cbase = $this->handler->getCbaseById($cbaseId);
@@ -89,87 +103,13 @@ $app->get('/cbases/{cbaseId}', function (Request $request, Response $response) {
         $cbaseSlug = $cbaseId;
         $cbase = $this->handler->getCbaseBySlug($cbaseSlug);
     }
-    $cbase["_links"] = [
-        "self" => $request->getUri()->getBaseUrl() . "/cbases/{$cbase["id"]}",
-        "self_slug" => $request->getUri()->getBaseUrl() . "/cbases/{$cbase["slug"]}",
-        "cbases" => $request->getUri()->getBaseUrl() . "/cbases",
-        "home" => $request->getUri()->getBaseUrl()
-    ];
-    $usecases = $this->handler->getUsecasesByCbaseId($cbase["id"]);
-    foreach ($usecases as &$usecase) {
-        $usecase["_links"] = [
-            "self" => $request->getUri()->getBaseUrl() . "/usecases/{$usecase["id"]}",
-            "self_slug" => $request->getUri()->getBaseUrl() . "/usecases/{$usecase["slug"]}",
-            "usecases" => $request->getUri()->getBaseUrl() . "/usecases",
-            "home" => $request->getUri()->getBaseUrl()
-        ];
-    }
-    $cbase["_embedded"] = [
-        "usecase" => $usecases
-    ];
+    $token = $this->handler->createCbaseToken($cbase);
     return $response->withJson([
-        "cbase" => $cbase
+        "token" => $token
     ]);
 });
 
-$app->get('/usecases', function (Request $request, Response $response) {
-    $usecases = $this->handler->getUsecases();
-    foreach ($usecases as &$usecase) {
-        $usecase["_links"] = [
-            "self" => $request->getUri()->getBaseUrl() . "/usecases/{$usecase["id"]}",
-            "self_slug" => $request->getUri()->getBaseUrl() . "/usecases/{$usecase["slug"]}",
-            "usecases" => $request->getUri()->getBaseUrl() . "/usecases",
-            "home" => $request->getUri()->getBaseUrl()
-        ];
-        $cbase = $this->handler->getCbaseById($usecase["cbase_id"]);
-        $cbase["_links"] = [
-            "self" => $request->getUri()->getBaseUrl() . "/cbases/{$cbase["id"]}",
-            "self_slug" => $request->getUri()->getBaseUrl() . "/cbases/{$cbase["slug"]}",
-            "cbases" => $request->getUri()->getBaseUrl() . "/cbases",
-            "home" => $request->getUri()->getBaseUrl()
-        ];
-        $usecase["_embedded"] = [
-            "cbase" => $cbase
-        ];
-    }
-    return $response->withJson([
-        "usecases" => $usecases
-    ]);
-});
-
-$app->get('/usecases/{usecaseId}', function (Request $request, Response $response) {
-    $usecaseId = $request->getAttribute('usecaseId');
-    if (is_numeric($usecaseId)) {
-        $usecase = $this->handler->getUsecaseById($usecaseId);
-    } else {
-        $usecaseSlug = $usecaseId;
-        $usecase = $this->handler->getUsecaseBySlug($usecaseSlug);
-    }
-    $usecase["_links"] = [
-        "self" => $request->getUri()->getBaseUrl() . "/usecases/{$usecase["id"]}",
-        "self_slug" => $request->getUri()->getBaseUrl() . "/usecases/{$usecase["slug"]}",
-        "usecases" => $request->getUri()->getBaseUrl() . "/usecases",
-        "home" => $request->getUri()->getBaseUrl()
-    ];
-    $cbase = $this->handler->getCbaseById($usecase["cbase_id"]);
-    $cbase["_links"] = [
-        "self" => $request->getUri()->getBaseUrl() . "/cbases/{$cbase["id"]}",
-        "self_slug" => $request->getUri()->getBaseUrl() . "/cbases/{$cbase["slug"]}",
-        "cbases" => $request->getUri()->getBaseUrl() . "/cbases",
-        "home" => $request->getUri()->getBaseUrl()
-    ];
-    $usecase["_embedded"] = [
-        "cbase" => $cbase
-    ];
-    return $response->withJson([
-        "usecase" => $usecase
-    ]);
-});
-
-$app->post('/usecases', function (Request $request, Response $response) {
-    return $response->withJson([
-        "usecase" => $this->handler->postUsecase($request->getParsedBody())
-    ]);
-});
+require('../private/routers/cbases.php');
+require('../private/routers/usecases.php');
 
 $app->run();

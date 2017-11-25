@@ -1,0 +1,11 @@
+
+            UPDATE
+                projects
+            SET
+                
+        name = :name, organisation = :organisation, country = :country, image = :image, teaser = :teaser, description = :description, website = :website, category = :category, type = :type
+            WHERE id = :id
+        
+
+
+{"id":"26","name":"Transparent Water","organisation":"Code for NL","country":"Nederland","image":"http:\/\/media.istockphoto.com\/photos\/water-drop-picture-id530987380?k=6&m=530987380&s=612x612&w=0&h=qFv7VgyIkap9bJKEtX-UjsVs_fP5VYAD7i8FS237HI8=","teaser":"Kan ik hier uit de kraan drinken? Een vraag die iedere vakantieganger zichzelf wel eens stelt. Maar hoe staat het eigenlijk met de waterkwaliteit thuis?","description":"Voer een adres in en ontdek welke waterkwaliteit je kunt verwachten. Voor alle stoffen en organismen die in het water voorkomen proberen wij aan te geven welk effect deze op jou hebben en of de gemeten waterkwaliteit goed of slecht voor je is.","website":"http:\/\/www.transparentwater.io\/nl\/","category":"projecten","type":"community"}

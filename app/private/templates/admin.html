@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Clarity curated</title>
+    <link href="/css/foundation.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link href="/css/additions.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="layout">
+
+    <h1 class="admin-mode-notifier">ADMIN MODE</h1>
+
+    <header class="main-header layout__main-header">
+        <a href="/admin/cbase/{{ cbase.slug }}">
+            <img src="/svg/clarity-curated-logo.svg" alt="Clarity curated" class="main-header__logo">
+        </a>
+    </header>
+
+    <main class="main-content layout__main-content">
+        
+        <div class="layout__row">
+            
+            <div class="layout__project-list" style="margin: 0 20px">
+            
+                <h2>Create new curated list</h2>
+                
+                <h3>Ugly on purpose</h3>
+                
+                <form method="post" action="/admin/cbase/create">
+                    <h3>Curated list name</h3>
+                    <input type="text" name="name">
+                    <h3>Curated list description</h3>
+                    <textarea name="description"></textarea>
+                    <h3>Curator name</h3>
+                    <input type="text" name="admin_name">
+                    <h3>Curator e-mail</h3>
+                    <input type="text" name="admin_email">
+                    <h3>Curator photo</h3>
+                    <input type="text" name="image">
+                    <h3>Root password</h3>
+                    <input type="text" name="root_password">
+                    
+                    <br>
+                    <button type="submit">Create</button>
+                </form>
+                
+            </div>
+            
+        </div>
+        
+    </main>
+</body>
+</html>

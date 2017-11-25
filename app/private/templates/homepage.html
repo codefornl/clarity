@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Clarity Market Place</title>
+    <title>Clarity curated</title>
     <link href="/css/foundation.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet" type="text/css">
@@ -14,7 +14,7 @@
 
     <header class="main-header layout__main-header">
         <a href="/">
-            <img src="/svg/clarity-marketplace-logo.svg" alt="Clarity marketplace" class="main-header__logo">
+            <img src="/svg/clarity-curated-logo.svg" alt="Clarity curated" class="main-header__logo">
         </a>
     </header>
 
@@ -37,6 +37,9 @@
                     </a>
                     <div class="list-summary__count">{{ cbase._embedded.usecase|length }} use cases</div>
                     <p class="list-summary__description">{{ cbase.description|raw }}</p>
+{% if cbase._embedded.usecase|length > 3 %}
+                    <a href="/cbase/{{ cbase.slug }}" class="forward-link">All use cases →</a>
+{% endif %}
                     <div class="list-summary__curator">
                         <div class="curator">
                             <img src="{{ cbase.image }}" class="curator__avatar">
@@ -53,7 +56,7 @@
 
             <div class="layout__project-list">
 
-{% for usecase in cbase._embedded.usecase %}
+{% for usecase in cbase._embedded.usecase|slice(0, 3) %}
                 
                 <a href="/cbase/{{ cbase.slug }}/usecase/{{ usecase.slug }}">
                     <div class="project layout__project-list-item">
@@ -72,18 +75,6 @@
                 </a>
                 
 {% endfor %}
-
-                <a href="/cbase/{{ cbase.slug }}">
-                    <div class="project layout__project-list-item">
-                        <img src="http://img.codefor.nl/?url=http://www.cbase.eu/img/cbase_screen.png&height=426&width=640" class="project__image">
-                        <div class="project__meta">
-                            <div class="project__summary">
-                                <h3 class="project__title">MORE »</h3>
-                                <h4 class="project__location"></h4>
-                            </div>
-                        </div>
-                    </div>
-                </a>
 
             </div>
         </div>

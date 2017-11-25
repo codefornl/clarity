@@ -12,15 +12,17 @@
 
 <body class="layout">
 
+    <h1 class="admin-mode-notifier">ADMIN MODE</h1>
+
     <header class="main-header layout__main-header">
-        <a href="/">
+        <a href="/admin/cbase/{{ cbase.slug }}">
             <img src="/svg/clarity-curated-logo.svg" alt="Clarity curated" class="main-header__logo">
         </a>
     </header>
 
     <main class="main-content layout__main-content">
-
-        <form class="searchbar layout__searchbar">
+        
+        <form class="searchbar layout__searchbar" style="visibility: hidden">
             <input type="text" class="searchbar__input" placeholder="Search {{ cbase.name }} use cases" name="q" value="">
             <button class="searchbar__button"><img src="/svg/searchbar-icon.svg"></button>
         </form>
@@ -30,7 +32,7 @@
             <div class="layout__list-meta">
 
                 <div class="list-summary">
-                    <a href="/cbase/{{ cbase.slug }}">
+                    <a href="/admin/cbase/{{ cbase.slug }}">
                         <h2 class="list-summary__title">{{ cbase.name }}</h2>
                     </a>
                     <div class="list-summary__count">{{ cbase._embedded.usecase|length }} use cases</div>
@@ -45,7 +47,13 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
+                
+                <form class="project-create" method="post" action="/admin/cbase/{{ cbase.slug }}/usecase/create">
+                    <input class="project-create__input" type="text" name="name" placeholder="Name"><br>
+                    <button class="project-create__button" type="submit">Create use case</button>
+                </form>
 
             </div>
 
@@ -53,7 +61,7 @@
 
 {% for usecase in cbase._embedded.usecase %}
 
-                <a href="/cbase/{{ cbase.slug }}/usecase/{{ usecase.slug }}">
+                <a href="/admin/cbase/{{ cbase.slug }}/usecase/{{ usecase.slug }}">
                     <div class="project layout__project-list-item">
                         <img src="http://img.codefor.nl?url={{ usecase.image|url_encode }}&height=426&width=640" class="project__image">
                         <div class="project__meta">

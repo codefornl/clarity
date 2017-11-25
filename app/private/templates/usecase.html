@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Clarity Market Place - Maidstone Council</title>
+    <title>Clarity curated</title>
     <link href="/css/foundation.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet" type="text/css">
@@ -13,7 +13,7 @@
 
     <header class="main-header layout__main-header">
         <a href="/">
-            <img src="/svg/clarity-marketplace-logo.svg" alt="Clarity marketplace" class="main-header__logo">
+            <img src="/svg/clarity-curated-logo.svg" alt="Clarity curated" class="main-header__logo">
         </a>
     </header>
 
@@ -63,7 +63,7 @@
 
                 <div class="project-meta__curator">
                     <div class="curator">
-                        <img src="{{ usecase.image }}" class="curator__avatar">
+                        <img src="http://img.codefor.nl?url={{ usecase.contact_image|url_encode }}&height=120&width=120" class="curator__avatar">
                         <div class="curator__contact">
                             <h3 class="curator__name">{{ usecase.contact_name }}</h3>
                             <div class="curator__badge">contact</div>

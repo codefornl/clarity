@@ -35,36 +35,20 @@ $container['client'] = function ($c) {
     return $client;
 };
 
-// routing
+/**
+ * GET /
+ * 
+ * Get cbases.
+ */
 $app->get('/', function (Request $request, Response $response) {
-    $cbases = json_decode($this->client->get('/cbases')->getBody(), true)["cbases"];
+    $result = json_decode($this->client->get('/cbases')->getBody(), true);
     return $this->view->render($response, 'homepage.html', [
-        'cbases' => $cbases
+        'cbases' => $result["_embedded"]["cbase"]
     ]);
 });
 
-$app->get('/edit/{cbase_token}', function (Request $request, Response $response) {
-    $cbase_token = $request->getAttribute("cbase_token");
-    //$usecase = json_decode($this->client->get('/usecases/' . $usecase_slug)->getBody(), true)["usecase"];
-    return $this->view->render($response, 'edit.html', [
-        'cbase_token' => $cbase_token
-    ]);
-});
-
-$app->get('/cbase/{cbase_slug}', function (Request $request, Response $response) {
-    $cbase_slug = $request->getAttribute("cbase_slug");
-    $cbase = json_decode($this->client->get('/cbases/' . $cbase_slug)->getBody(), true)["cbase"];
-    return $this->view->render($response, 'cbase.html', [
-        'cbase' => $cbase
-    ]);
-});
-
-$app->get('/cbase/{cbase_slug}/usecase/{usecase_slug}', function (Request $request, Response $response) {
-    $usecase_slug = $request->getAttribute("usecase_slug");
-    $usecase = json_decode($this->client->get('/usecases/' . $usecase_slug)->getBody(), true)["usecase"];
-    return $this->view->render($response, 'usecase.html', [
-        'usecase' => $usecase
-    ]);
-});
+require('../private/routers/cbases.php');
+require('../private/routers/usecases.php');
+require('../private/routers/admin.php');
 
 $app->run();
