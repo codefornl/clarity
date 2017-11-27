@@ -295,7 +295,7 @@ class Handler {
             "website",
             "category",
             "type",
-            //"tool",
+            "download",
             "contact_name",
             "contact_image",
             "contact_email"

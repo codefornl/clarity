@@ -51,7 +51,7 @@
                     <h3 class="project-update__header">Type</h3>
                     <input class="project-update__input" type="text" name="type" value="{{ usecase.type }}"><br>
                     <h3 class="project-update__header">Tool</h3>
-                    <input class="project-update__input" type="text" name="tool" value="{{ usecase.tool }}"><br>
+                    <input class="project-update__input" type="text" name="download" value="{{ usecase.download }}"><br>
                     <h3 class="project-update__header">Contact name</h3>
                     <input class="project-update__input" type="text" name="contact_name" value="{{ usecase.contact_name }}"><br>
                     <h3 class="project-update__header">Contact image</h3>
@@ -96,7 +96,7 @@
 
                 <div class="project-meta__item">
                     <h3 class="project-meta__header">Tools</h3>
-                    <a href="#" class="project-meta__link">iTouchVision</a>
+                    <a href="{{ usecase.download }}" class="project-meta__link">{{ usecase.download }}</a>
                 </div>
 
                 <div class="project-meta__curator">
