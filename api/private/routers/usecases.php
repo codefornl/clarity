@@ -120,7 +120,24 @@ $app->post('/cbases/{cbaseId}/usecases', function (Request $request, Response $r
         $cbaseSlug = $cbaseId;
         $cbase = $this->handler->getCbaseBySlug($cbaseSlug);
     }
-    $usecase = $this->handler->createUsecaseWithinCbase($cbase, $request->getParsedBody());
+    $token = $request->getHeader('Authorization')[0];
+    if (substr($token, 0, 7) !== "Bearer ") {
+        return $response
+            ->withStatus(403)
+            ->withJson([
+                'message' => 'Unable to authorize'
+            ]);
+    }
+    $token = substr($token, 7);
+    try {
+        $usecase = $this->handler->createUsecaseWithinCbase($cbase, $request->getParsedBody(), $token);
+    } catch (\Exception $e) {
+        return $response
+            ->withStatus($e->getCode())
+            ->withJson([
+                'message' => $e->getMessage()
+            ]);
+    }
     $usecase["_links"] = [
         "self" => [
             "href" => $request->getUri()->getBaseUrl() . "/usecases/{$usecase["id"]}"
@@ -169,7 +186,24 @@ $app->put('/usecases/{usecaseId}', function (Request $request, Response $respons
         $usecaseSlug = $usecaseId;
         $usecase = $this->handler->getUsecaseBySlug($usecaseSlug);
     }
-    $this->handler->updateUsecase($usecase, $request->getParsedBody());
+    $token = $request->getHeader('Authorization')[0];
+    if (substr($token, 0, 7) !== "Bearer ") {
+        return $response
+            ->withStatus(403)
+            ->withJson([
+                'message' => 'Unable to authorize'
+            ]);
+    }
+    $token = substr($token, 7);
+    try {
+        $this->handler->updateUsecase($usecase, $request->getParsedBody(), $token);
+    } catch (\Exception $e) {
+        return $response
+            ->withStatus($e->getCode())
+            ->withJson([
+                'message' => $e->getMessage()
+            ]);
+    }
     $usecase["_links"] = [
         "self" => [
             "href" => $request->getUri()->getBaseUrl() . "/usecases/{$usecase["id"]}"
@@ -218,6 +252,23 @@ $app->delete('/usecases/{usecaseId}', function (Request $request, Response $resp
         $usecaseSlug = $usecaseId;
         $usecase = $this->handler->getUsecaseBySlug($usecaseSlug);
     }
-    $usecase = $this->handler->deleteUsecase($usecase);
+    $token = $request->getHeader('Authorization')[0];
+    if (substr($token, 0, 7) !== "Bearer ") {
+        return $response
+            ->withStatus(403)
+            ->withJson([
+                'message' => 'Unable to authorize'
+            ]);
+    }
+    $token = substr($token, 7);
+    try {
+        $this->handler->deleteUsecase($usecase, $token);
+    } catch (\Exception $e) {
+        return $response
+            ->withStatus($e->getCode())
+            ->withJson([
+                'message' => $e->getMessage()
+            ]);
+    }
     return $response->withStatus(204);
 });

@@ -15,7 +15,7 @@
     <h1 class="admin-mode-notifier">ADMIN MODE</h1>
 
     <header class="main-header layout__main-header">
-        <a href="/admin/cbase/{{ cbase.slug }}">
+        <a href="/admin/cbase/{{ cbase.slug }}?token={{ token }}">
             <img src="/svg/clarity-curated-logo.svg" alt="Clarity curated" class="main-header__logo">
         </a>
     </header>
@@ -32,7 +32,7 @@
             <div class="layout__list-meta">
 
                 <div class="list-summary">
-                    <a href="/admin/cbase/{{ cbase.slug }}">
+                    <a href="/admin/cbase/{{ cbase.slug }}?token={{ token }}">
                         <h2 class="list-summary__title">{{ cbase.name }}</h2>
                     </a>
                     <div class="list-summary__count">{{ cbase._embedded.usecase|length }} use cases</div>
@@ -50,7 +50,7 @@
                     
                 </div>
                 
-                <form class="project-create" method="post" action="/admin/cbase/{{ cbase.slug }}/usecase/create">
+                <form class="project-create" method="post" action="/admin/cbase/{{ cbase.slug }}/usecase/create?token={{ token }}">
                     <input class="project-create__input" type="text" name="name" placeholder="Name"><br>
                     <button class="project-create__button" type="submit">Create use case</button>
                 </form>
@@ -61,7 +61,7 @@
 
 {% for usecase in cbase._embedded.usecase %}
 
-                <a href="/admin/cbase/{{ cbase.slug }}/usecase/{{ usecase.slug }}">
+                <a href="/admin/cbase/{{ cbase.slug }}/usecase/{{ usecase.slug }}?token={{ token }}">
                     <div class="project layout__project-list-item">
                         <img src="http://img.codefor.nl?url={{ usecase.image|url_encode }}&height=426&width=640" class="project__image">
                         <div class="project__meta">

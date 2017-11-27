@@ -120,6 +120,7 @@ $app->get('/cbases/{cbaseId}', function (Request $request, Response $response) {
  */
 $app->post('/cbases', function (Request $request, Response $response) {
     try {
+        // FIXME get root_pass from header instead
         $cbase= $this->handler->createCbase($request->getParsedBody());
     } catch (\Exception $e) {
         return $response
@@ -141,26 +142,6 @@ $app->post('/cbases', function (Request $request, Response $response) {
         "home" => [
             "href" => $request->getUri()->getBaseUrl()
         ]
-    ];
-    $usecases = $this->handler->getUsecasesByCbaseId($cbase["id"]);
-    foreach ($usecases as &$usecase) {
-        $usecase["_links"] = [
-            "self" => [
-                "href" => $request->getUri()->getBaseUrl() . "/usecases/{$usecase["id"]}"
-            ],
-            "self_slug" => [
-                "href" => $request->getUri()->getBaseUrl() . "/usecases/{$usecase["slug"]}"
-            ],
-            "usecases" => [
-                "href" => $request->getUri()->getBaseUrl() . "/usecases"
-            ],
-            "home" => [
-                "href" => $request->getUri()->getBaseUrl()
-            ]
-        ];
-    }
-    $cbase["_embedded"] = [
-        "usecase" => $usecases
     ];
     return $response->withJson($cbase);
 });

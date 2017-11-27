@@ -1,7 +1,7 @@
 <?php
 
-ini_set("error_reporting", E_ALL);
-ini_set("display_errors", 1);
+//ini_set("error_reporting", E_ALL);
+//ini_set("display_errors", 1);
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
@@ -67,45 +67,6 @@ $app->get('/', function (Request $request, Response $response) {
                 "href" => $request->getUri()->getBaseUrl() . "/usecases"
             ]
         ]
-    ]);
-});
-
-/**
- * GET /cbases/<cbaseId>/token/<token>
- * 
- * Get cbase token.
- */
-$app->get('/cbases/{cbaseId}/token/{token}', function (Request $request, Response $response) {
-    $cbaseId = $request->getAttribute('cbaseId');
-    $token = $request->getAttribute('token');
-    if (is_numeric($cbaseId)) {
-        $cbase = $this->handler->getCbaseById($cbaseId);
-    } else {
-        $cbaseSlug = $cbaseId;
-        $cbase = $this->handler->getCbaseBySlug($cbaseSlug);
-    }
-    $token = $this->handler->getCbaseTokenIfValid($cbase, $token);
-    return $response->withJson([
-        "token" => $token
-    ]);
-});
-
-/**
- * POST /cbases/<cbaseId>/token
- * 
- * Create cbase token.
- */
-$app->post('/cbases/{cbaseId}/token', function (Request $request, Response $response) {
-    $cbaseId = $request->getAttribute('cbaseId');
-    if (is_numeric($cbaseId)) {
-        $cbase = $this->handler->getCbaseById($cbaseId);
-    } else {
-        $cbaseSlug = $cbaseId;
-        $cbase = $this->handler->getCbaseBySlug($cbaseSlug);
-    }
-    $token = $this->handler->createCbaseToken($cbase);
-    return $response->withJson([
-        "token" => $token
     ]);
 });
 

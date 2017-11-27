@@ -84,12 +84,37 @@ class Handler {
         return $cbase;
     }
     
+    private function _getCbaseTokenEncrypted($cbase) {
+        $sql = "
+            SELECT
+                token_encrypted
+            FROM
+                cbases
+            WHERE
+                id = :id
+            LIMIT 1
+        ";
+        $stmt = $this->_pdo->prepare($sql);
+        $stmt->execute([
+            "id" => $cbase["id"]
+        ]);
+        $cbase = $stmt->fetch();
+        return $cbase["token_encrypted"];
+    }
+    
     public function createCbase($params) {
+        // FIXME make root_pass the second parameter
         if (empty($params["root_pass"]) || $params["root_pass"] !== $this->_rootPass) {
             // A bit ugly using HTTP status codes, since handler has nothing to
             // do with HTTP, but whatever.
             throw new \Exception("missing value for root_pass", 401);
         }
+        $token = "";
+        $token_alphabet = array_merge(range('A','F'), range(0,9));
+        for ($i = 0; $i < 40; ++$i) {
+            $token .= $token_alphabet[array_rand($token_alphabet)];
+        }
+        $token_encrypted = password_hash($token, PASSWORD_BCRYPT);
         $sql = "
             INSERT INTO
                 cbases
@@ -99,6 +124,7 @@ class Handler {
                 description = :description,
                 admin_name = :admin_name,
                 admin_email = :admin_email,
+                token_encrypted = :token_encrypted,
                 image = :image
         ";
         $stmt = $this->_pdo->prepare($sql);
@@ -108,9 +134,12 @@ class Handler {
             "description" => $params["description"],
             "admin_name" => $params["admin_name"],
             "admin_email" => $params["admin_email"],
+            "token_encrypted" => $token_encrypted,
             "image" => $params["image"]
         ]);
-        return $this->getCbaseById($this->_pdo->lastInsertId());
+        $cbase = $this->getCbaseById($this->_pdo->lastInsertId());
+        $cbase["token"] = $token;
+        return $cbase;
     }
     
     public function getCbaseTokenIfValid($cbase, $token) {
@@ -265,7 +294,13 @@ class Handler {
         return $text . "-" . md5(time() . $text);
     }
     
-    public function createUsecaseWithinCbase($cbase, $params) {
+    public function createUsecaseWithinCbase($cbase, $params, $token) {
+        $token_encrypted = $this->_getCbaseTokenEncrypted($cbase);
+        if (!password_verify($token, $token_encrypted)) {
+            // A bit ugly using HTTP status codes, since handler has nothing to
+            // do with HTTP, but whatever.
+            throw new \Exception("incorrect token", 401);
+        }
         $slug = $this->_slugify($params["name"]);
         $sql = "
             INSERT INTO
@@ -284,7 +319,14 @@ class Handler {
         return $this->getUsecaseBySlug($slug);
     }
     
-    public function updateUsecase(&$usecase, $params) {
+    public function updateUsecase(&$usecase, $params, $token) {
+        $cbase = $this->getCbaseById($usecase["cbase_id"]);
+        $token_encrypted = $this->_getCbaseTokenEncrypted($cbase);
+        if (!password_verify($token, $token_encrypted)) {
+            // A bit ugly using HTTP status codes, since handler has nothing to
+            // do with HTTP, but whatever.
+            throw new \Exception("incorrect token", 401);
+        }
         $updateFields = [
             "name",
             "organisation",
@@ -322,7 +364,14 @@ class Handler {
         $stmt->execute($values);
     }
     
-    public function deleteUsecase(&$usecase) {
+    public function deleteUsecase(&$usecase, $token) {
+        $cbase = $this->getCbaseById($usecase["cbase_id"]);
+        $token_encrypted = $this->_getCbaseTokenEncrypted($cbase);
+        if (!password_verify($token, $token_encrypted)) {
+            // A bit ugly using HTTP status codes, since handler has nothing to
+            // do with HTTP, but whatever.
+            throw new \Exception("incorrect token", 401);
+        }
         $sql = "
             DELETE FROM projects
             WHERE id = :id
