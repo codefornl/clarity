@@ -10,8 +10,10 @@ use \Psr\Http\Message\ResponseInterface as Response;
  */
 $app->get('/cbase/{cbase_slug}', function (Request $request, Response $response) {
     $cbase_slug = $request->getAttribute("cbase_slug");
-    $cbase = json_decode($this->client->get('/cbases/' . $cbase_slug)->getBody(), true);
+    $q = $request->getQueryParam("q");
+    $cbase = json_decode($this->client->get('/cbases/' . $cbase_slug . "?q={$q}")->getBody(), true);
     return $this->view->render($response, 'cbase.html', [
-        'cbase' => $cbase
+        'cbase' => $cbase,
+        'q' => $q
     ]);
 });

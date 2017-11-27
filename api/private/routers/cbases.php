@@ -9,7 +9,8 @@ use \Psr\Http\Message\ResponseInterface as Response;
  * Get cbases.
  */
 $app->get('/cbases', function (Request $request, Response $response) {
-    $cbases = $this->handler->getCbases();
+    $q = $request->getQueryParam("q");
+    $cbases = $this->handler->getCbases($q);
     foreach ($cbases as &$cbase) {
         $cbase["_links"] = [
             "self" => [
@@ -88,7 +89,8 @@ $app->get('/cbases/{cbaseId}', function (Request $request, Response $response) {
             "href" => $request->getUri()->getBaseUrl()
         ]
     ];
-    $usecases = $this->handler->getUsecasesByCbaseId($cbase["id"]);
+    $q = $request->getQueryParam("q");
+    $usecases = $this->handler->getUsecasesByCbaseId($cbase["id"], $q);
     foreach ($usecases as &$usecase) {
         $usecase["_links"] = [
             "self" => [

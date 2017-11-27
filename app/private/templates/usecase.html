@@ -19,8 +19,8 @@
 
     <main class="main-content layout__main-content">
 
-        <form class="searchbar layout__searchbar">
-            <input type="text" class="searchbar__input" placeholder="Search {{ usecase._embedded.cbase.name }} use cases">
+        <form class="searchbar layout__searchbar" action="/cbase/{{ usecase._embedded.cbase.slug }}">
+            <input type="text" class="searchbar__input" placeholder="Search {{ usecase._embedded.cbase.name }} use cases" name="q" value="{{ q }}">
             <button class="searchbar__button"><img src="/svg/searchbar-icon.svg"></button>
         </form>
 

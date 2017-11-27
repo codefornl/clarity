@@ -11,7 +11,7 @@ class Handler {
         $this->_rootPass = $rootPass;
     }
     
-    public function getCbases() {
+    public function getCbases($q = "") {
         $sql = "
             SELECT
                 id,
@@ -24,8 +24,16 @@ class Handler {
             FROM
                 cbases
         ";
+        $params = [];
+        if (!empty($q)) {
+            $sql .= "
+                WHERE
+                    name LIKE :q
+            ";
+            $params['q'] = '%' . $q . '%';
+        }
         $stmt = $this->_pdo->prepare($sql);
-        $stmt->execute();
+        $stmt->execute($params);
         $cbases = $stmt->fetchAll();
         return $cbases;
     }
@@ -152,20 +160,28 @@ class Handler {
         return $token;
     }
     
-    public function getUsecases() {
+    public function getUsecases($q = "") {
         $sql = "
             SELECT
                 *
             FROM
                 projects
         ";
+        $params = [];
+        if (!empty($q)) {
+            $sql .= "
+                WHERE
+                    name LIKE :q
+            ";
+            $params['q'] = '%' . $q . '%';
+        }
         $stmt = $this->_pdo->prepare($sql);
-        $stmt->execute();
+        $stmt->execute($params);
         $usecases = $stmt->fetchAll();
         return $usecases;
     }
     
-    public function getUsecasesByCbaseId($cbaseId) {
+    public function getUsecasesByCbaseId($cbaseId, $q = "") {
         $sql = "
             SELECT
                 *
@@ -173,10 +189,18 @@ class Handler {
                 projects
             WHERE cbase_id = :cbase_id
         ";
-        $stmt = $this->_pdo->prepare($sql);
-        $stmt->execute([
+        $params = [
             "cbase_id" => (int)$cbaseId
-        ]);
+        ];
+        if (!empty($q)) {
+            $sql .= "
+                AND
+                    name LIKE :q
+            ";
+            $params['q'] = '%' . $q . '%';
+        }
+        $stmt = $this->_pdo->prepare($sql);
+        $stmt->execute($params);
         $usecases = $stmt->fetchAll();
         return $usecases;
     }

@@ -41,9 +41,11 @@ $container['client'] = function ($c) {
  * Get cbases.
  */
 $app->get('/', function (Request $request, Response $response) {
-    $result = json_decode($this->client->get('/cbases')->getBody(), true);
+    $q = $request->getQueryParam("q");
+    $result = json_decode($this->client->get('/cbases?q=' . $q)->getBody(), true);
     return $this->view->render($response, 'homepage.html', [
-        'cbases' => $result["_embedded"]["cbase"]
+        'cbases' => $result["_embedded"]["cbase"],
+        'q' => $q
     ]);
 });
 
