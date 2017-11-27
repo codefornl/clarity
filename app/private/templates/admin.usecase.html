@@ -29,7 +29,7 @@
         <div class="layout__row">
 
             <div class="layout__back">
-                <a href="/admin/cbase/{{ usecase._embedded.cbase.slug }}" class="back-link">&larr; Back to overview</a>
+                <a href="/admin/cbase/{{ usecase._embedded.cbase.slug }}" class="back-link">&larr; {{ usecase._embedded.cbase.name }} use cases</a>
                 
                 <form class="project-update" method="post" action="/admin/cbase/{{ usecase._embedded.cbase.slug }}/usecase/{{ usecase.slug }}/update">
                     <h3 class="project-update__header">Name</h3>

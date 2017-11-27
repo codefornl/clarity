@@ -37,9 +37,6 @@
                     </a>
                     <div class="list-summary__count">{{ cbase._embedded.usecase|length }} use cases</div>
                     <p class="list-summary__description">{{ cbase.description|raw }}</p>
-{% if cbase._embedded.usecase|length > 3 %}
-                    <a href="/cbase/{{ cbase.slug }}" class="forward-link">All use cases →</a>
-{% endif %}
                     <div class="list-summary__curator">
                         <div class="curator">
                             <img src="{{ cbase.image }}" class="curator__avatar">
@@ -51,6 +48,10 @@
                         </div>
                     </div>
                 </div>
+
+{% if cbase._embedded.usecase|length > 3 %}
+                <a href="/cbase/{{ cbase.slug }}" class="forward-link">All {{ cbase.name }} use cases →</a>
+{% endif %}
 
             </div>
 

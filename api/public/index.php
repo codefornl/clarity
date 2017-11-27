@@ -20,7 +20,7 @@ $app->options('/{routes:.+}', function ($request, $response, $args) {
 $app->add(function ($req, $res, $next) {
     $response = $next($req, $res);
     return $response
-            ->withHeader('Content-type', 'application/hal+json')
+            ->withHeader('Content-type', 'application/hal+json,application/json')
             //->withHeader('Access-Control-Allow-Origin', '*')
             ->withHeader('Access-Control-Allow-Origin', $req->getHeader('Origin')) // FIXME ?
             ->withHeader('Access-Control-Allow-Credentials', 'true') // FIXME ?

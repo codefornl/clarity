@@ -26,7 +26,7 @@
 
         <div class="layout__row">
 
-            <a href="/cbase/{{ usecase._embedded.cbase.slug }}" class="back-link layout__back">&larr; Back to overview</a>
+            <a href="/cbase/{{ usecase._embedded.cbase.slug }}" class="back-link layout__back">&larr; {{ usecase._embedded.cbase.name }} use cases</a>
 
             <article class="project-detail layout__project-detail">
                 <div class="project-detail__image" style="background-image: url(http://img.codefor.nl?url={{ usecase.image|url_encode }}&height=426&width=640)">
