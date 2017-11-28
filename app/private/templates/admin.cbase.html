@@ -36,7 +36,7 @@
                         <h2 class="list-summary__title">{{ cbase.name }}</h2>
                     </a>
                     <div class="list-summary__count">{{ cbase._embedded.usecase|length }} case studies</div>
-                    <p class="list-summary__description">{{ cbase.description|raw }}</p>
+                    <p class="list-summary__description">{{ cbase.description }}</p>
                     <div class="list-summary__curator">
                         <div class="curator">
                             <img src="{{ cbase.image }}" class="curator__avatar">
@@ -53,6 +53,20 @@
                 <form class="project-create" method="post" action="/admin/cbase/{{ cbase.slug }}/usecase/create?token={{ token }}">
                     <input class="project-create__input" type="text" name="name" placeholder="Name"><br>
                     <button class="project-create__button" type="submit">Create use case</button>
+                </form>
+                
+                <form class="cbase-update" method="post" action="/admin/cbase/{{ cbase.slug }}/update?token={{ token }}">
+                    <h3 class="cbase-update__header">Name</h3>
+                    <input class="cbase-update__input" type="text" name="name" value="{{ cbase.name }}"><br>
+                    <h3 class="cbase-update__header">Admin name</h3>
+                    <input class="cbase-update__input" type="text" name="admin_name" value="{{ cbase.admin_name }}"><br>
+                    <h3 class="cbase-update__header">Admin email</h3>
+                    <input class="cbase-update__input" type="text" name="admin_email" value="{{ cbase.admin_email }}"><br>
+                    <h3 class="cbase-update__header">Image</h3>
+                    <input class="cbase-update__input" type="text" name="image" value="{{ cbase.image }}"><br>
+                    <h3 class="cbase-update__header">Description</h3>
+                    <textarea class="cbase-update__textarea" name="description">{{ cbase.description }}</textarea>
+                    <button class="cbase-update__button" type="submit">Update cbase</button>
                 </form>
 
             </div>

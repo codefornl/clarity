@@ -9,6 +9,7 @@
     background: #F34E4E;
     line-height: 2em
 }
+.cbase-update,
 .project-create,
 .project-update,
 .project-delete {
@@ -17,10 +18,12 @@
     padding: 20px;
     margin: 20px auto;
 }
+.cbase-update,
 .project-create,
 .project-update {
     background: #ccc;
 }
+.cbase-update .cbase-update__header,
 .project-update .project-update__header {
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
@@ -29,6 +32,7 @@
     font-size: 15px;
     margin-top: 10px;
 }
+.cbase-update .cbase-update__input,
 .project-create .project-create__input,
 .project-update .project-update__input {
     font-family: 'Open Sans', sans-serif;
@@ -38,6 +42,7 @@
     border: 0;
     padding: 4px 10px;
 }
+.cbase-update .cbase-update__textarea,
 .project-update .project-update__textarea {
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
@@ -46,6 +51,7 @@
     min-height: 200px;
     padding: 10px;
 }
+.cbase-update .cbase-update__button,
 .project-create .project-create__button,
 .project-update .project-update__button,
 .project-delete .project-delete__button {

@@ -149,26 +149,40 @@ class Handler {
         return $cbase;
     }
     
-    public function getCbaseTokenIfValid($cbase, $token) {
+    public function updateCbase($cbase, $params, $token) {
+        $token_encrypted = $this->_getCbaseTokenEncrypted($cbase);
+        if (!password_verify($token, $token_encrypted)) {
+            // A bit ugly using HTTP status codes, since handler has nothing to
+            // do with HTTP, but whatever.
+            throw new \Exception("incorrect token", 401);
+        }
+        $updateFields = [
+            "name",
+            "admin_name",
+            "admin_email",
+            "image",
+            "description"
+        ];
         $sql = "
-            SELECT
-                token_encrypted
-            FROM
+            UPDATE
                 cbases
-            WHERE
-                id = :id
-            LIMIT 1
+            SET
+                
+        ";
+        $values["id"] = $cbase["id"];
+        foreach ($updateFields as $field) {
+            if (!empty($params[$field])) {
+                $parts[] = "{$field} = :{$field}";
+                $cbase[$field] = $params[$field];
+                $values[$field] = $params[$field];
+            }
+        }
+        $sql .= implode($parts, ", ");
+        $sql .= "
+            WHERE id = :id
         ";
         $stmt = $this->_pdo->prepare($sql);
-        $stmt->execute([
-            "id" => $cbase["id"]
-        ]);
-        $cbase = $stmt->fetch();
-        if (password_verify($token, $cbase["token_encrypted"])) {
-            return $token;
-        } else {
-            return null;
-        }
+        $stmt->execute($values);
     }
     
     public function createCbaseToken($cbase) {

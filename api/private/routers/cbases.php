@@ -145,3 +145,71 @@ $app->post('/cbases', function (Request $request, Response $response) {
     ];
     return $response->withJson($cbase);
 });
+
+/**
+ * PUT /cbases/<cbase_id>
+ * 
+ * Update cbase.
+ */
+$app->put('/cbases/{cbaseId}', function (Request $request, Response $response) {
+    $cbaseId = $request->getAttribute('cbaseId');
+    if (is_numeric($cbaseId)) {
+        $cbase = $this->handler->getCbaseById($cbaseId);
+    } else {
+        $cbaseSlug = $cbaseId;
+        $cbase = $this->handler->getCbaseBySlug($cbaseSlug);
+    }
+    $token = $request->getHeader('Authorization')[0];
+    if (substr($token, 0, 7) !== "Bearer ") {
+        return $response
+            ->withStatus(403)
+            ->withJson([
+                'message' => 'Unable to authorize'
+            ]);
+    }
+    $token = substr($token, 7);
+    try {
+        $this->handler->updateCbase($cbase, $request->getParsedBody(), $token);
+    } catch (\Exception $e) {
+        return $response
+            ->withStatus($e->getCode())
+            ->withJson([
+                'message' => $e->getMessage()
+            ]);
+    }
+    $cbase["_links"] = [
+        "self" => [
+            "href" => $request->getUri()->getBaseUrl() . "/cbases/{$cbase["id"]}"
+        ],
+        "self_slug" => [
+            "href" => $request->getUri()->getBaseUrl() . "/cbases/{$cbase["slug"]}"
+        ],
+        "cbases" => [
+            "href" => $request->getUri()->getBaseUrl() . "/cbases"
+        ],
+        "home" => [
+            "href" => $request->getUri()->getBaseUrl()
+        ]
+    ];
+    $usecases = $this->handler->getUsecasesByCbaseId($cbase["id"]);
+    foreach ($usecases as &$usecase) {
+        $usecase["_links"] = [
+            "self" => [
+                "href" => $request->getUri()->getBaseUrl() . "/usecases/{$usecase["id"]}"
+            ],
+            "self_slug" => [
+                "href" => $request->getUri()->getBaseUrl() . "/usecases/{$usecase["slug"]}"
+            ],
+            "usecases" => [
+                "href" => $request->getUri()->getBaseUrl() . "/usecases"
+            ],
+            "home" => [
+                "href" => $request->getUri()->getBaseUrl()
+            ]
+        ];
+    }
+    $cbase["_embedded"] = [
+        "usecase" => $usecases
+    ];
+    return $response->withJson($cbase);
+});

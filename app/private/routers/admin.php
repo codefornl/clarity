@@ -32,6 +32,34 @@ $app->post('/admin/cbase/create', function (Request $request, Response $response
 });
 
 /**
+ * POST /admin/cbase/<cbase_slug>/update
+ * 
+ * Update cbase.
+ */
+$app->post('/admin/cbase/{cbase_slug}/update', function (Request $request, Response $response) {
+    $cbase_slug = $request->getAttribute("cbase_slug");
+    $token = $request->getQueryParam("token");
+    $cbase = json_decode($this->client->put(
+        '/cbases/' . $cbase_slug,
+        [
+            'json' => $request->getParsedBody(),
+            'headers' => [
+                'Authorization' => "Bearer {$token}"
+            ]
+        ]
+    )->getBody(), true);
+    return $response->withRedirect($this->router->pathFor(
+        'admin_cbase',
+        [
+            'cbase_slug' => $cbase["slug"]
+        ],
+        [
+            'token' => $token
+        ]
+    ));
+});
+
+/**
  * GET /admin/cbase/<cbase_slug>
  * 
  * Get cbase admin.
