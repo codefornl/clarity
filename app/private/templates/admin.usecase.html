@@ -22,14 +22,14 @@
     <main class="main-content layout__main-content">
 
         <form class="searchbar layout__searchbar" style="visibility: hidden">
-            <input type="text" class="searchbar__input" placeholder="Search {{ usecase._embedded.cbase.name }} use cases">
+            <input type="text" class="searchbar__input" placeholder="Search {{ usecase._embedded.cbase.name }} case studies">
             <button class="searchbar__button"><img src="/svg/searchbar-icon.svg"></button>
         </form>
 
         <div class="layout__row">
 
             <div class="layout__back">
-                <a href="/admin/cbase/{{ usecase._embedded.cbase.slug }}?token={{ token }}" class="back-link">&larr; {{ usecase._embedded.cbase.name }} use cases</a>
+                <a href="/admin/cbase/{{ usecase._embedded.cbase.slug }}?token={{ token }}" class="back-link">&larr; {{ usecase._embedded.cbase.name }} case studies</a>
                 
                 <form class="project-update" method="post" action="/admin/cbase/{{ usecase._embedded.cbase.slug }}/usecase/{{ usecase.slug }}/update?token={{ token }}">
                     <h3 class="project-update__header">Name</h3>

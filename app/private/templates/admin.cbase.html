@@ -23,7 +23,7 @@
     <main class="main-content layout__main-content">
         
         <form class="searchbar layout__searchbar" style="visibility: hidden">
-            <input type="text" class="searchbar__input" placeholder="Search {{ cbase.name }} use cases" name="q" value="">
+            <input type="text" class="searchbar__input" placeholder="Search {{ cbase.name }} case studies" name="q" value="">
             <button class="searchbar__button"><img src="/svg/searchbar-icon.svg"></button>
         </form>
 
@@ -35,7 +35,7 @@
                     <a href="/admin/cbase/{{ cbase.slug }}?token={{ token }}">
                         <h2 class="list-summary__title">{{ cbase.name }}</h2>
                     </a>
-                    <div class="list-summary__count">{{ cbase._embedded.usecase|length }} use cases</div>
+                    <div class="list-summary__count">{{ cbase._embedded.usecase|length }} case studies</div>
                     <p class="list-summary__description">{{ cbase.description|raw }}</p>
                     <div class="list-summary__curator">
                         <div class="curator">

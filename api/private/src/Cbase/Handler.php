@@ -20,7 +20,8 @@ class Handler {
                 description,
                 admin_name,
                 admin_email,
-                image
+                image,
+                language
             FROM
                 cbases
         ";
@@ -49,7 +50,8 @@ class Handler {
                 description,
                 admin_name,
                 admin_email,
-                image
+                image,
+                language
             FROM
                 cbases
             WHERE id = :id
@@ -72,7 +74,8 @@ class Handler {
                 description,
                 admin_name,
                 admin_email,
-                image
+                image,
+                language
             FROM
                 cbases
             WHERE slug = :slug
@@ -127,7 +130,8 @@ class Handler {
                 admin_name = :admin_name,
                 admin_email = :admin_email,
                 token_encrypted = :token_encrypted,
-                image = :image
+                image = :image,
+                language = :language
         ";
         $stmt = $this->_pdo->prepare($sql);
         $stmt->execute([
@@ -137,7 +141,8 @@ class Handler {
             "admin_name" => $params["admin_name"],
             "admin_email" => $params["admin_email"],
             "token_encrypted" => $token_encrypted,
-            "image" => $params["image"]
+            "image" => $params["image"],
+            "language" => $params["language"]
         ]);
         $cbase = $this->getCbaseById($this->_pdo->lastInsertId());
         $cbase["token"] = $token;

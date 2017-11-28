@@ -51,7 +51,7 @@ $container['handler'] = function($c) {
  */
 $app->get('/', function (Request $request, Response $response) {
     return $response->withJson([
-        "service" => "cbase: curated sets of use cases for digital tools for government",
+        "service" => "cbase: curated sets of case studies of digital tools for government",
         "about" => "http://www.codefor.nl/clarity",
         "browser" => "http://haltalk.herokuapp.com/explorer/browser.html#http://cbase.codefor.nl/",
         "application" => "http://clarity.codefor.nl",
