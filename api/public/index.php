@@ -51,10 +51,10 @@ $container['handler'] = function($c) {
  */
 $app->get('/', function (Request $request, Response $response) {
     return $response->withJson([
-        "service" => "cbase: clarity curated sets of use cases",
-        "about" => "http://www.cbase.eu",
-        "browser" => "http://haltalk.herokuapp.com/explorer/browser.html#http://api.cbase.eu/",
-        "application" => "http://app.cbase.eu",
+        "service" => "cbase: curated sets of use cases for digital tools for government",
+        "about" => "http://www.codefor.nl/clarity",
+        "browser" => "http://haltalk.herokuapp.com/explorer/browser.html#http://cbase.codefor.nl/",
+        "application" => "http://clarity.codefor.nl",
         "codebase" => "https://github.com/codefornl/clarity_slim",
         "_links" => [
             "self" => [
