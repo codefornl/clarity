@@ -81,3 +81,28 @@
     margin-top: 40px;
     display: block;
 }
+.project__title {
+    overflow: hidden;
+}
+.project__location {
+    overflow: hidden;
+}
+.layout__project-list-item {
+    padding: 0 10px 20px;
+}
+footer {
+    background: #444;
+}
+.footer__text {
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    padding: 10px;
+    font-size: 0.8em;
+    line-height: 1.4em;
+}
+.footer__text p {
+    margin-top: 10px;
+}
+.footer__text a {
+    text-decoration: underline;
+}

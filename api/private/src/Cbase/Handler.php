@@ -5,6 +5,7 @@ namespace Cbase;
 class Handler {
     
     private $_pdo;
+    //private $_cachedCbases = [];
     
     public function __construct(\PDO $pdo, $rootPass) {
         $this->_pdo = $pdo;
@@ -42,6 +43,9 @@ class Handler {
     }
     
     public function getCbaseById($cbaseId) {
+        // if ($this->_cachedCbases[$cbaseId]) {
+        //     return $this->_cachedCbases[$cbaseId];
+        // }
         $sql = "
             SELECT
                 id,
@@ -62,6 +66,7 @@ class Handler {
             "id" => (int)$cbaseId
         ]);
         $cbase = $stmt->fetch();
+        //$this->_cachedCbases[$cbaseId] = $cbase;
         return $cbase;
     }
     
