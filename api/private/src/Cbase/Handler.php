@@ -22,7 +22,8 @@ class Handler {
                 admin_name,
                 admin_email,
                 image,
-                language
+                language,
+                promote
             FROM
                 cbases
         ";
@@ -39,6 +40,9 @@ class Handler {
         $stmt = $this->_pdo->prepare($sql);
         $stmt->execute($params);
         $cbases = $stmt->fetchAll();
+        foreach ($cbases as &$cbase) {
+            $cbase["promote"] = (bool)$cbase["promote"];
+        }
         return $cbases;
     }
     

@@ -11,10 +11,13 @@
 </head>
 <body class="layout">
         
-    <h1 class="admin-mode-notifier">ADMIN MODE</h1>
+    <h1 class="admin-mode-notifier">
+        ADMIN MODE
+        <a style="float: right; margin-right: 1em; font-weight: 900" href="/cbase/{{ usecase._embedded.cbase.slug }}/usecase/{{ usecase.slug }}">✖</a>
+    </h1>
 
     <header class="main-header layout__main-header">
-        <a href="/admin/cbase/{{ usecase._embedded.cbase.slug }}?token={{ token }}">
+        <a href="/cbase/{{ usecase._embedded.cbase.slug }}/usecase/{{ usecase.slug }}" target="__blank">
             <img src="/svg/clarity-casestudies-logo.svg" alt="Clarity - case studies" class="main-header__logo">
         </a>
     </header>
