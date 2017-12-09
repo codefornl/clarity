@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Clarity - case studies</title>
+    <title>Clarity - {{ translate("case studies", cbase.language) }}</title>
     <link href="/css/foundation.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet" type="text/css">
@@ -35,14 +35,14 @@
                     <a href="/cbase/{{ cbase.slug }}">
                         <h2 class="list-summary__title">{{ cbase.name }}</h2>
                     </a>
-                    <div class="list-summary__count">{{ cbase._embedded.usecase|length }} case studies</div>
+                    <div class="list-summary__count">{{ cbase._embedded.usecase|length }} {{ translate("case studies", cbase.language) }}</div>
                     <p class="list-summary__description">{{ cbase.description }}</p>
                     <div class="list-summary__curator">
                         <div class="curator">
                             <img src="https://img.codefor.nl?url={{ (cbase.image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=80&width=80" class="curator__avatar">
                             <div class="curator__contact">
                                 <h3 class="curator__name">{{ cbase.admin_name }}</h3>
-                                <div class="curator__badge">curator</div>
+                                <div class="curator__badge">{{ translate("curator", cbase.language) }}</div>
                                 <a href="mailto:{{ cbase.admin_email }}" class="curator__email">{{ cbase.admin_email }}</a>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                 </div>
 
 {% if cbase._embedded.usecase|length > 3 %}
-                <a href="/cbase/{{ cbase.slug }}" class="forward-link">All {{ cbase.name }} case studies →</a>
+                <a href="/cbase/{{ cbase.slug }}" class="forward-link">{{ translate("All", cbase.language) }} {{ cbase.name }} {{ translate("case studies", cbase.language) }} →</a>
 {% endif %}
 
             </div>

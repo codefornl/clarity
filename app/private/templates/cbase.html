@@ -21,7 +21,7 @@
     <main class="main-content layout__main-content">
 
         <form class="searchbar layout__searchbar">
-            <input type="text" class="searchbar__input" placeholder="Search {{ cbase.name }} case studies" name="q" value="{{ q }}">
+            <input type="text" class="searchbar__input" placeholder="{{ translate("Search", cbase.language) }} {{ cbase.name }} {{ translate("case studies", cbase.language) }}" name="q" value="{{ q }}">
             <button class="searchbar__button"><img src="/svg/searchbar-icon.svg"></button>
         </form>
 
@@ -33,14 +33,14 @@
                     <a href="/cbase/{{ cbase.slug }}">
                         <h2 class="list-summary__title">{{ cbase.name }}</h2>
                     </a>
-                    <div class="list-summary__count">{{ cbase._embedded.usecase|length }} case studies</div>
+                    <div class="list-summary__count">{{ cbase._embedded.usecase|length }} {{ translate("case studies", cbase.language) }}</div>
                     <p class="list-summary__description">{{ cbase.description }}</p>
                     <div class="list-summary__curator">
                         <div class="curator">
                             <img src="https://img.codefor.nl?url={{ (cbase.image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=80&width=80" class="curator__avatar">
                             <div class="curator__contact">
                                 <h3 class="curator__name">{{ cbase.admin_name }}</h3>
-                                <div class="curator__badge">curator</div>
+                                <div class="curator__badge">{{ translate("curator", cbase.language) }}</div>
                                 <a href="mailto:{{ cbase.admin_email }}" class="curator__email">{{ cbase.admin_email }}</a>
                             </div>
                         </div>
