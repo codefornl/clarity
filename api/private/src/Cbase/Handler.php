@@ -260,15 +260,16 @@ class Handler {
         ];
         if (!empty($q)) {
             $sql .= "
-                AND
+                AND (
                     name LIKE :q
-                OR  teaser LIKE :q
-                OR  description LIKE :q
-                OR  type LIKE :q
-                OR  country LIKE :q
-                OR  category LIKE :q
-                OR  organisation LIKE :q
-                OR  contact_name LIKE :q
+                    OR  teaser LIKE :q
+                    OR  description LIKE :q
+                    OR  type LIKE :q
+                    OR  country LIKE :q
+                    OR  category LIKE :q
+                    OR  organisation LIKE :q
+                    OR  contact_name LIKE :q
+                )
             ";
             $params['q'] = '%' . $q . '%';
         }
