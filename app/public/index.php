@@ -58,7 +58,8 @@ $app->get('/', function (Request $request, Response $response) {
     });
     return $this->view->render($response, 'homepage.html', [
         'cbases' => $cbases,
-        'q' => $q
+        'q' => $q,
+        'uri' => $request->getUri()
     ]);
 });
 

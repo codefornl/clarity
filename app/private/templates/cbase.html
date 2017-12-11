@@ -3,11 +3,23 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Clarity - case studies</title>
+    <title>Clarity - {{ translate("case studies", cbase.language) }}</title>
     <link href="/css/foundation.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet" type="text/css">
     <link href="/css/additions.css" rel="stylesheet" type="text/css">
+    
+    <meta property='og:url' content='{{ uri }}'>
+    <meta property='og:title' name='title' content="{{ cbase.name }}">
+    <meta property='og:description' name='description' content="{{ cbase.description }}">
+    <meta property='og:image' content="{{ cbase.image }}">
+    <link rel='image_src' href="{{ cbase.image }}"/>
+    <meta name='keywords' content="">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ cbase.name }}">
+    <meta name="twitter:description" content="{{ cbase.description }}">
+    <meta name="twitter:image:src" content="{{ cbase.image }}">
 </head>
 
 <body class="layout">

@@ -14,6 +14,7 @@ $app->get('/cbase/{cbase_slug}', function (Request $request, Response $response)
     $cbase = json_decode($this->client->get('/cbases/' . $cbase_slug . "?q={$q}")->getBody(), true);
     return $this->view->render($response, 'cbase.html', [
         'cbase' => $cbase,
-        'q' => $q
+        'q' => $q,
+        'uri' => $request->getUri()
     ]);
 });
