@@ -45,7 +45,7 @@
                     <a href="/cbase/{{ cbase.slug }}">
                         <h2 class="list-summary__title">{{ cbase.name }}</h2>
                     </a>
-                    <div class="list-summary__count">{{ cbase._embedded.usecase|length }} {{ translate("case studies", cbase.language) }}</div>
+                    <div class="list-summary__count">{{ cbase._embedded.usecase|length }} {{ translate("case studies", cbase.language) }} {% if q %}{{ translate("matching", cbase.language) }} "{{ q }}"{% endif %}</div>
                     <p class="list-summary__description">{{ cbase.description }}</p>
                     <div class="list-summary__curator">
                         <div class="curator">

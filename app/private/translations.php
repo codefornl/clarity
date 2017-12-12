@@ -24,5 +24,8 @@ return [
     ],
     "Search" => [
         "nld" => "Doorzoek"
+    ],
+    "matching" => [
+        "nld" => "met"
     ]
 ];
