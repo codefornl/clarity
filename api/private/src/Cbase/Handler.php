@@ -194,14 +194,24 @@ class Handler {
         $stmt->execute($values);
     }
     
-    public function createCbaseToken($cbase) {
-        $email = $cbase["admin_email"];
+    public function createTokenPair() {
         $token = "";
         $token_alphabet = array_merge(range('A','F'), range(0,9));
         for ($i = 0; $i < 40; ++$i) {
             $token .= $token_alphabet[array_rand($token_alphabet)];
         }
         $token_encrypted = password_hash($token, PASSWORD_DEFAULT);
+        return [
+            "token" => $token,
+            "token_encrypted" => $token_encrypted
+        ];
+    }
+    
+    public function createCbaseToken($cbase) {
+        $email = $cbase["admin_email"];
+        $tokenPair = $this->createTokenPair();
+        $token = $tokenPair["token"];
+        $token_encrypted = $tokenPair["token_encrypted"];
         $sql = "
             UPDATE
                 cbases

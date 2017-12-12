@@ -70,6 +70,15 @@ $app->get('/', function (Request $request, Response $response) {
     ]);
 });
 
+/**
+ * GET /token
+ * 
+ * Get token pair.
+ */
+$app->get('/token', function (Request $request, Response $response) {
+    return $response->withJson($this->handler->createTokenPair());
+});
+
 require('../private/routers/cbases.php');
 require('../private/routers/usecases.php');
 

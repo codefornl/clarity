@@ -9,7 +9,11 @@ use \Psr\Http\Message\ResponseInterface as Response;
  * Admin.
  */
 $app->get('/admin', function (Request $request, Response $response) {
-    return $this->view->render($response, 'admin.html');
+    $result = json_decode($this->client->get('/cbases')->getBody(), true);
+    $cbases = $result["_embedded"]["cbase"];
+    return $this->view->render($response, 'admin.html', [
+        'cbases' => $cbases,
+    ]);
 })->setName('root');
 
 /**

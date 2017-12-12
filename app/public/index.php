@@ -42,29 +42,9 @@ $container['client'] = function ($c) {
     return $client;
 };
 
-/**
- * GET /
- * 
- * Get cbases.
- */
-$app->get('/', function (Request $request, Response $response) {
-    $q = $request->getQueryParam("q");
-    $result = json_decode($this->client->get('/cbases?q=' . $q)->getBody(), true);
-    $cbases = $result["_embedded"]["cbase"];
-    usort($cbases, function ($a, $b) {
-        if ($a["promote"] === $b["promote"]) return 0;
-        if ($a["promote"]) return -1;
-        if ($b["promote"]) return 1;
-    });
-    return $this->view->render($response, 'homepage.html', [
-        'cbases' => $cbases,
-        'q' => $q,
-        'uri' => $request->getUri()
-    ]);
-});
-
 require('../private/routers/cbases.php');
 require('../private/routers/usecases.php');
 require('../private/routers/admin.php');
+require('../private/routers/home.php');
 
 $app->run();
