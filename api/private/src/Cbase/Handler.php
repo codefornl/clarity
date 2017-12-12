@@ -37,6 +37,9 @@ class Handler {
             ";
             $params['q'] = '%' . $q . '%';
         }
+        $sql .= "
+            ORDER BY name ASC
+        ";
         $stmt = $this->_pdo->prepare($sql);
         $stmt->execute($params);
         $cbases = $stmt->fetchAll();
@@ -251,6 +254,9 @@ class Handler {
             ";
             $params['q'] = '%' . $q . '%';
         }
+        $sql .= "
+            ORDER BY name ASC
+        ";
         $stmt = $this->_pdo->prepare($sql);
         $stmt->execute($params);
         $usecases = $stmt->fetchAll();
@@ -283,6 +289,9 @@ class Handler {
             ";
             $params['q'] = '%' . $q . '%';
         }
+        $sql .= "
+            ORDER BY name ASC
+        ";
         $stmt = $this->_pdo->prepare($sql);
         $stmt->execute($params);
         $usecases = $stmt->fetchAll();
