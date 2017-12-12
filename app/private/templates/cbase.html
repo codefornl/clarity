@@ -25,7 +25,7 @@
 <body class="layout">
 
     <header class="main-header layout__main-header">
-        <a href="/">
+        <a href="/#{{ cbase.slug }}">
             <img src="/svg/clarity-casestudies-logo.svg" alt="Clarity - case studies" class="main-header__logo">
         </a>
     </header>
@@ -65,7 +65,7 @@
 
 {% for usecase in cbase._embedded.usecase %}
 
-                <a href="/cbase/{{ cbase.slug }}/usecase/{{ usecase.slug }}">
+                <a href="/cbase/{{ cbase.slug }}/usecase/{{ usecase.slug }}" name="{{ usecase.slug }}">
                     <div class="project layout__project-list-item">
                         <img src="https://img.codefor.nl?url={{ (usecase.image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=426&width=640" class="project__image">
                         <div class="project__meta">
