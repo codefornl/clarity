@@ -352,7 +352,7 @@ class Handler {
         $text = strtolower($text);
         
         if (empty($text)) {
-        return 'n-a';
+            return md5(time() . $text);
         }
         
         return $text . "-" . md5(time() . $text);
