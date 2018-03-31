@@ -23,7 +23,8 @@ class Handler {
                 admin_email,
                 image,
                 language,
-                promote
+                promote,
+                logo_image
             FROM
                 cbases
         ";
@@ -32,7 +33,7 @@ class Handler {
             $sql .= "
                 WHERE
                     name LIKE :q
-                OR  description LIKE :q
+                OR description LIKE :q
                 OR admin_name LIKE :q
             ";
             $params['q'] = '%' . $q . '%';
@@ -62,7 +63,8 @@ class Handler {
                 admin_name,
                 admin_email,
                 image,
-                language
+                language,
+                logo_image
             FROM
                 cbases
             WHERE id = :id
@@ -87,7 +89,8 @@ class Handler {
                 admin_name,
                 admin_email,
                 image,
-                language
+                language,
+                logo_image
             FROM
                 cbases
             WHERE slug = :slug

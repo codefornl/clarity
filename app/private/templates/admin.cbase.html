@@ -72,6 +72,12 @@
                     <textarea class="cbase-update__textarea" name="description">{{ cbase.description }}</textarea>
                     <button class="cbase-update__button" type="submit">Update cbase</button>
                 </form>
+                
+                <form class="cbase-update" method="post" action="/admin/cbase/{{ cbase.slug }}/regenerate">
+                    <h3 class="cbase-update__header">Password</h3>
+                    <input class="cbase-update__input" type="password" name="password">
+                    <button class="cbase-update__button" type="submit">Regenerate token link</button>
+                </form>
 
             </div>
 

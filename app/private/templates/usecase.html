@@ -26,7 +26,11 @@
 
     <header class="main-header layout__main-header">
         <a href="/#{{ usecase._embedded.cbase.slug }}">
+            {% if usecase._embedded.cbase.logo_image %}
+            <img src="{{ usecase._embedded.cbase.logo_image }}" alt="Clarity - case studies" class="main-header__logo">
+            {% else %}
             <img src="/svg/clarity-casestudies-logo.svg" alt="Clarity - case studies" class="main-header__logo">
+            {% endif %}
         </a>
     </header>
 
