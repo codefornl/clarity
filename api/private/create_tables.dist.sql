@@ -10,8 +10,11 @@ CREATE TABLE `cbases` (
   `token_encrypted` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
   `description` text NOT NULL,
+  `language` char(3) NOT NULL,
+  `promote` int(11) NOT NULL,
+  `logo_image` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=42 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE `projects` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -33,7 +36,7 @@ CREATE TABLE `projects` (
   `contact_email` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `cbase_id` (`cbase_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=75 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
 ALTER TABLE `projects`
