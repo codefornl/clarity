@@ -15,11 +15,11 @@ $app->get('/', function (Request $request, Response $response) {
     $promoted = array_filter($cbases, function ($cbase) {
         return (bool)$cbase["promote"];
     });
-    $nonPromoted = array_filter($cbases, function ($cbase) {
-        return !$cbase["promote"];
+    $nonPromotedNonEmpty = array_filter($cbases, function ($cbase) {
+        return !empty($cbase["_embedded"]["usecase"]) && !$cbase["promote"];
     });
     return $this->view->render($response, 'homepage.html', [
-        'cbases' => array_merge($promoted, $nonPromoted),
+        'cbases' => array_merge($promoted, $nonPromotedNonEmpty),
         'q' => $q,
         'uri' => $request->getUri()
     ]);
