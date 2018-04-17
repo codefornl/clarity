@@ -27,14 +27,17 @@ class Handler {
                 logo_image
             FROM
                 cbases
+            WHERE
+                NOT disabled
         ";
         $params = [];
         if (!empty($q)) {
             $sql .= "
-                WHERE
-                    name LIKE :q
-                OR description LIKE :q
-                OR admin_name LIKE :q
+                AND (
+                       name LIKE :q
+                    OR description LIKE :q
+                    OR admin_name LIKE :q
+                )
             ";
             $params['q'] = '%' . $q . '%';
         }

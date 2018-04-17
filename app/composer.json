@@ -2,6 +2,7 @@
     "require": {
         "slim/slim": "^3.0",
         "slim/twig-view": "^2.3",
-        "guzzlehttp/guzzle": "~6.0"
+        "guzzlehttp/guzzle": "~6.0",
+        "twig/extensions": "^1.5"
     }
 }

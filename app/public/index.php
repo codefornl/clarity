@@ -25,6 +25,7 @@ $container['view'] = function ($c) {
         $c['router'],
         $basePath));
     $view->addExtension(new \Twig_Extension_Debug());
+    $view->addExtension(new \Twig_Extensions_Extension_Array());
     $translateFunction = new Twig_SimpleFunction('translate', function ($text, $language) {
         $translations = include(__DIR__ . '/../private/translations.php');
         return $translations[$text][$language] ?

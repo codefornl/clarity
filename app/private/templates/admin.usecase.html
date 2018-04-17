@@ -70,7 +70,9 @@
             </div>
 
             <article class="project-detail layout__project-detail">
-                <div class="project-detail__image" style="background-image: url(https://img.codefor.nl?url={{ (usecase.image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=426&width=640)">
+                <div
+                    data-original-img="{{ usecase.image }}"
+                    class="project-detail__image" style="background-image: url(https://img.codefor.nl?url={{ (usecase.image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=426&width=640)">
                     <div class="project-detail__overlay">
                         <h1 class="project-detail__title">{{ usecase.name }}</h1>
                         <h2 class="project-detail__location">{{ usecase.organisation }} ({{ usecase.country }})</h2>
@@ -104,7 +106,9 @@
 
                 <div class="project-meta__curator">
                     <div class="curator">
-                        <img src="https://img.codefor.nl?url={{ (usecase.contact_image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=80&width=80" class="curator__avatar">
+                        <img
+                            data-original-img="{{ usecase.contact_image }}"
+                            src="https://img.codefor.nl?url={{ (usecase.contact_image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=80&width=80" class="curator__avatar">
                         <div class="curator__contact">
                             <h3 class="curator__name">{{ usecase.contact_name }}</h3>
                             <div class="curator__badge">contact</div>

@@ -43,7 +43,9 @@
                     <p class="list-summary__description">{{ cbase.description }}</p>
                     <div class="list-summary__curator">
                         <div class="curator">
-                            <img src="https://img.codefor.nl?url={{ (cbase.image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=80&width=80" class="curator__avatar">
+                            <img
+                                data-original-img="{{ cbase.image }}"
+                                src="https://img.codefor.nl?url={{ (cbase.image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=80&width=80" class="curator__avatar">
                             <div class="curator__contact">
                                 <h3 class="curator__name">{{ cbase.admin_name }}</h3>
                                 <div class="curator__badge">curator</div>
@@ -87,7 +89,9 @@
 
                 <a href="/admin/cbase/{{ cbase.slug }}/usecase/{{ usecase.slug }}?token={{ token }}">
                     <div class="project layout__project-list-item">
-                        <img src="https://img.codefor.nl?url={{ (usecase.image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=426&width=640" class="project__image">
+                        <img
+                            data-original-img="{{ usecase.image }}"
+                            src="https://img.codefor.nl?url={{ (usecase.image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=426&width=640" class="project__image">
                         <div class="project__meta">
                             <div class="project__summary">
                                 <h3 class="project__title">{{ usecase.name }}</h3>

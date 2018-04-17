@@ -11,8 +11,9 @@ CREATE TABLE `cbases` (
   `image` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `language` char(3) NOT NULL,
-  `promote` int(11) NOT NULL,
+  `promote` tinyint(1) NOT NULL,
   `logo_image` varchar(255) NOT NULL,
+  `disabled` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
