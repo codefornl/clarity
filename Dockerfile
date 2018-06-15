@@ -17,5 +17,3 @@ COPY vhost.conf /etc/apache2/sites-enabled/clarity.conf
 USER www-data
 
 RUN composer install -d /var/www/html
-
-CMD /user/sbin/apache2ctl -D FOREGROUND
