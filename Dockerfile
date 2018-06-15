@@ -7,6 +7,8 @@ COPY . /var/www/html
 
 RUN chown -R www-data:www-data /var/www/html
 
-RUN sudo -u www-data composer install -d /var/www/html
-
 COPY vhost.conf /etc/apache2/sites-enabled/clarity.conf
+
+USER www-data
+
+RUN composer install -d /var/www/html
