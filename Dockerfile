@@ -5,7 +5,7 @@ RUN curl -sS https://getcomposer.org/installer | \
 
 COPY . /var/www/html
 
-RUN sudo -u www-data composer install -d=/var/www/html
+RUN sudo -u www-data composer install -d /var/www/html
 
 COPY vhost.conf /etc/apache2/sites-enabled/praatmee.conf
 
