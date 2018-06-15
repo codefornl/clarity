@@ -8,7 +8,13 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 require '../vendor/autoload.php';
 
-require '../private/config.php';
+$config['twig']['template_dir'] = '../private/templates/';
+$config['twig']['debug'] = false;
+$config['twig']['cache'] = false; // false || 'path/to/cache'
+
+$config['api']['base_uri'] = getenv('BASE_URI');
+$config['api']['timeout'] = 2.0;
+
 $app = new \Slim\App([
     "settings" => $config
 ]);
