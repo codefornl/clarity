@@ -7,7 +7,7 @@ RUN apt-get update && \
 
 COPY . /var/www/html
 
-RUN composer install
+RUN composer install -d=/var/www/html
 
 COPY vhost.conf /etc/apache2/sites-enabled/praatmee.conf
 
