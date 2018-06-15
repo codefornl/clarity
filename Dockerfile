@@ -3,8 +3,8 @@ FROM php:7.0-apache
 RUN curl -sS https://getcomposer.org/installer | \
     php -- --install-dir=/usr/bin/ --filename=composer
 
-RUN apt-get update && \
-    apt-get install zip
+RUN apt-get update -y && \
+    apt-get install zip -y
 
 COPY . /var/www/html
 
