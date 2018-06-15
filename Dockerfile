@@ -17,3 +17,5 @@ COPY vhost.conf /etc/apache2/sites-enabled/clarity.conf
 USER www-data
 
 RUN composer install -d /var/www/html
+
+USER root
