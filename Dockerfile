@@ -6,7 +6,8 @@ RUN curl -sS https://getcomposer.org/installer | \
     php -- --install-dir=/usr/bin/ --filename=composer
 
 RUN apt-get update -y && \
-    apt-get install zip -y
+    apt-get install zip -y \
+    apt-get install ca-certificates
 
 COPY . /var/www/html
 
