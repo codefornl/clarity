@@ -37,13 +37,13 @@
     <main class="main-content layout__main-content">
 
         <form class="searchbar layout__searchbar" action="/cbase/{{ usecase._embedded.cbase.slug }}">
-            <input type="text" class="searchbar__input" placeholder="{{ translate("Search", usecase._embedded.cbase.language) }} {{ usecase._embedded.cbase.name }} {{ translate("case studies", usecase._embedded.cbase.language) }}" name="q" value="{{ q }}">
+            <input type="text" class="searchbar__input" placeholder="{{ translate("Search", usecase._embedded.cbase.language) }} {{ usecase._embedded.cbase.name }} {{ translate("case studies", usecase._embedded.cbase.language, 2) }}" name="q" value="{{ q }}">
             <button class="searchbar__button"><img src="/svg/searchbar-icon.svg"></button>
         </form>
 
         <div class="layout__row">
 
-            <a href="/cbase/{{ usecase._embedded.cbase.slug }}#{{ usecase.slug }}" class="back-link layout__back">&larr; {{ usecase._embedded.cbase.name }} {{ translate("case studies", usecase._embedded.cbase.language) }}</a>
+            <a href="/cbase/{{ usecase._embedded.cbase.slug }}#{{ usecase.slug }}" class="back-link layout__back">&larr; {{ usecase._embedded.cbase.name }} {{ translate("case studies", usecase._embedded.cbase.language, 2) }}</a>
 
             <article class="project-detail layout__project-detail">
                 <div class="project-detail__image"

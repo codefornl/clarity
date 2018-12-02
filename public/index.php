@@ -32,12 +32,31 @@ $container['view'] = function ($c) {
         $basePath));
     $view->addExtension(new \Twig_Extension_Debug());
     $view->addExtension(new \Twig_Extensions_Extension_Array());
-    $translateFunction = new Twig_SimpleFunction('translate', function ($text, $language) {
+
+    $translateFunction = new Twig_SimpleFunction('translate', function ($text, $language="eng", $count=1) {
+        
         $translations = include(__DIR__ . '/../private/translations.php');
-        return $translations[$text][$language] ?
-            $translations[$text][$language] :
-            $text;
+
+        if(!isset($language) || strlen($language) == 0){
+            $language="eng";
+        }
+
+        if(isset($translations[$text][$language])){
+            $lang_arr = explode("|", $translations[$text][$language]);
+            if(count($lang_arr) > 1){
+                if($count > 1){
+                    return $lang_arr[1];
+                } else {
+                    return $lang_arr[0];
+                }
+            } else {
+                return $lang_arr[0];
+            }
+        } else {
+            return $text;
+        }
     });
+
     $view->getEnvironment()->addFunction($translateFunction);
     return $view;
 };

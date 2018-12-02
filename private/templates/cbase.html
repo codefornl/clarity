@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Clarity - {{ translate("case studies", cbase.language) }}</title>
+    <title>Clarity - {{ translate("case studies", cbase.language, 2) }}</title>
     <link href="/css/foundation.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet" type="text/css">
@@ -37,7 +37,7 @@
     <main class="main-content layout__main-content">
 
         <form class="searchbar layout__searchbar" action="/cbase/{{ cbase.slug }}">
-            <input type="text" class="searchbar__input" placeholder="{{ translate("Search", cbase.language) }} {{ cbase.name }} {{ translate("case studies", cbase.language) }}" name="q" value="{{ q }}">
+            <input type="text" class="searchbar__input" placeholder="{{ translate("Search", cbase.language) }} {{ cbase.name }} {{ translate("case studies", cbase.language, 2) }}" name="q" value="{{ q }}">
             <button class="searchbar__button"><img src="/svg/searchbar-icon.svg"></button>
         </form>
 
@@ -49,7 +49,7 @@
                     <a href="/cbase/{{ cbase.slug }}">
                         <h2 class="list-summary__title">{{ cbase.name }}</h2>
                     </a>
-                    <div class="list-summary__count">{{ cbase._embedded.usecase|length }} {{ translate("case studies", cbase.language) }} {% if q %}{{ translate("matching", cbase.language) }} "{{ q }}"{% endif %}</div>
+                    <div class="list-summary__count">{{ cbase._embedded.usecase|length }} {{ translate("case studies", cbase.language, cbase._embedded.usecase|length) }} {% if q %}{{ translate("matching", cbase.language) }} "{{ q }}"{% endif %}</div>
                     <p class="list-summary__description">{{ cbase.description }}</p>
                     <div class="list-summary__curator">
                         <div class="curator">
