@@ -48,7 +48,7 @@
                     <a href="/cbase/{{ cbase.slug }}">
                         <h2 class="list-summary__title">{{ cbase.name }}</h2>
                     </a>
-                    <div class="list-summary__count">{{ cbase._embedded.usecase|length }} {{ translate("case studies", cbase.language, cbase._embedded.usecase|length) }}</div>
+                    <div class="list-summary__count">{{ cbase._embedded.usecase|length }} {{ translate("case studies", cbase._embedded.usecase|length) }}</div>
                     <p class="list-summary__description">{{ cbase.description }}</p>
                     <div class="list-summary__curator">
                         <div class="curator">
@@ -57,7 +57,7 @@
                                 src="https://img.codefor.nl?url={{ (cbase.image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=80&width=80" class="curator__avatar">
                             <div class="curator__contact">
                                 <h3 class="curator__name">{{ cbase.admin_name }}</h3>
-                                <div class="curator__badge">{{ translate("curator", cbase.language) }}</div>
+                                <div class="curator__badge">{{ translate("curator") }}</div>
                                 <a href="mailto:{{ cbase.admin_email }}" class="curator__email">{{ cbase.admin_email }}</a>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                 </div>
 
 {% if cbase._embedded.usecase|length > 3 %}
-                <a href="/cbase/{{ cbase.slug }}" class="forward-link">{{ translate("All", cbase.language) }} {{ cbase.name }} {{ translate("case studies", cbase.language, cbase._embedded.usecase|length) }} →</a>
+                <a href="/cbase/{{ cbase.slug }}" class="forward-link">{{ translate("All") }} {{ cbase.name }} {{ translate("case studies", cbase._embedded.usecase|length) }} →</a>
 {% endif %}
 
             </div>

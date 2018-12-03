@@ -37,13 +37,13 @@
     <main class="main-content layout__main-content">
 
         <form class="searchbar layout__searchbar" action="/cbase/{{ usecase._embedded.cbase.slug }}">
-            <input type="text" class="searchbar__input" placeholder="{{ translate("Search", usecase._embedded.cbase.language) }} {{ usecase._embedded.cbase.name }} {{ translate("case studies", usecase._embedded.cbase.language, 2) }}" name="q" value="{{ q }}">
+            <input type="text" class="searchbar__input" placeholder="{{ translate("Search") }} {{ usecase._embedded.cbase.name }} {{ translate("case studies", 2) }}" name="q" value="{{ q }}">
             <button class="searchbar__button"><img src="/svg/searchbar-icon.svg"></button>
         </form>
 
         <div class="layout__row">
 
-            <a href="/cbase/{{ usecase._embedded.cbase.slug }}#{{ usecase.slug }}" class="back-link layout__back">&larr; {{ usecase._embedded.cbase.name }} {{ translate("case studies", usecase._embedded.cbase.language, 2) }}</a>
+            <a href="/cbase/{{ usecase._embedded.cbase.slug }}#{{ usecase.slug }}" class="back-link layout__back">&larr; {{ usecase._embedded.cbase.name }} {{ translate("case studies", 2) }}</a>
 
             <article class="project-detail layout__project-detail">
                 <div class="project-detail__image"
@@ -66,17 +66,17 @@
             <aside class="project-meta layout__project-meta">
 
                 <div class="project-meta__item">
-                    <h3 class="project-meta__header">{{ translate("Category", usecase._embedded.cbase.language) }}</h3>
+                    <h3 class="project-meta__header">{{ translate("Category") }}</h3>
                     <p class="project-meta__text">{{ usecase.category }}</p>
                 </div>
 
                 <div class="project-meta__item">
-                    <h3 class="project-meta__header">{{ translate("Type", usecase._embedded.cbase.language) }}</h3>
+                    <h3 class="project-meta__header">{{ translate("Type") }}</h3>
                     <p class="project-meta__text">{{ usecase.type }}</p>
                 </div>
 
                 <div class="project-meta__item">
-                    <h3 class="project-meta__header">{{ translate("Tools", usecase._embedded.cbase.language) }}</h3>
+                    <h3 class="project-meta__header">{{ translate("Tools") }}</h3>
                     <a href="{{ usecase.download }}" class="project-meta__link">{{ usecase.download }}</a>
                 </div>
 
@@ -87,7 +87,7 @@
                             src="https://img.codefor.nl?url={{ (usecase.contact_image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=80&width=80" class="curator__avatar">
                         <div class="curator__contact">
                             <h3 class="curator__name">{{ usecase.contact_name }}</h3>
-                            <div class="curator__badge">{{ translate("contact", usecase._embedded.cbase.language) }}</div>
+                            <div class="curator__badge">{{ translate("contact") }}</div>
                             <a href="mailto:{{ usecase.contact_email }}" class="curator__email">{{ usecase.contact_email }}</a>
                         </div>
                     </div>

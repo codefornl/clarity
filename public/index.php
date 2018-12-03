@@ -33,16 +33,25 @@ $container['view'] = function ($c) {
     $view->addExtension(new \Twig_Extension_Debug());
     $view->addExtension(new \Twig_Extensions_Extension_Array());
 
-    $translateFunction = new Twig_SimpleFunction('translate', function ($text, $language="eng", $count=1) {
-        
-        $translations = include(__DIR__ . '/../private/translations.php');
+    $translateFunction = new Twig_SimpleFunction('translate', function ($text, $count=1) {
 
-        if(!isset($language) || strlen($language) == 0){
-            $language="eng";
+        if (isset($_GET['l'])) {
+            $lang = $_GET['l'];
+        } else {
+            $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
         }
 
-        if(isset($translations[$text][$language])){
-            $lang_arr = explode("|", $translations[$text][$language]);
+        $acceptLang = ['nl', 'es', 'en']; 
+        $lang = in_array($lang, $acceptLang) ? $lang : 'en';
+        if(file_exists(__DIR__ . "/../private/locale/{$lang}.json")){
+            $f = file_get_contents(__DIR__ . "/../private/locale/{$lang}.json");
+        } else {
+            $f = file_get_contents(__DIR__ . "/../private/locale/en.json");
+        }
+        $translations = json_decode($f, true);
+
+        if(isset($translations[$text])){
+            $lang_arr = explode("|", $translations[$text]);
             if(count($lang_arr) > 1){
                 if($count > 1){
                     return $lang_arr[1];
