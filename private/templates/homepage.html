@@ -1,46 +1,22 @@
 <!doctype html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Clarity - case studies</title>
-    <link href="/css/foundation.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
-    <link href="/css/style.css" rel="stylesheet" type="text/css">
-    <link href="/css/additions.css" rel="stylesheet" type="text/css">
-    
-    <meta property='og:url' content='{{ uri }}'>
-    <meta property='og:title' name='title' content="Clarity - case studies">
-    <meta property='og:description' name='description' content="The CLARITY project brings together stakeholder networks across Europe into an engaged and mobilised community that supports innovation in open eGovernment applications.">
-    <meta property='og:image' content="https://clarity-csa.eu/sites/default/files/slider_07.png">
-    <link rel='image_src' href="https://clarity-csa.eu/sites/default/files/slider_07.png"/>
-    <meta name='keywords' content="">
-    
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Clarity - case studies">
-    <meta name="twitter:description" content="The CLARITY project brings together stakeholder networks across Europe into an engaged and mobilised community that supports innovation in open eGovernment applications.">
-    <meta name="twitter:image:src" content="https://clarity-csa.eu/sites/default/files/slider_07.png">
-</head>
+{{ include('head.html')}}
 
 <body class="layout">
-
     <header class="main-header layout__main-header">
         <a href="/">
-            <img src="/svg/clarity-casestudies-logo.svg" alt="Clarity - case studies" class="main-header__logo">
+            <img src="/svg/clarity-casestudies-logo.svg" alt="{{ translate('title') }}" class="main-header__logo">
         </a>
     </header>
-
     <main class="main-content layout__main-content">
-
         <form class="searchbar layout__searchbar">
-            <input type="text" class="searchbar__input" placeholder="Search cbases" name="q" value="{{ q }}">
+            <input type="text" class="searchbar__input" placeholder="{{ translate('Search') }}" name="q" value="{{ q }}">
             <button class="searchbar__button"><img src="/svg/searchbar-icon.svg"></button>
         </form>
 
-{% for cbase in cbases %}
-        {{ include('partials/cbase-list.html')}}
-{% endfor %}
-
+        {% for cbase in cbases %}
+            {{ include('partials/cbase-list.html')}}
+        {% endfor %}
     </main>
     {{ include('footer.html')}}
 </body>

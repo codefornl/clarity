@@ -7,5 +7,11 @@
     "Tools": "Hulpmiddelen",
     "contact": "contact",
     "Search" : "Zoek",
-    "matching" : "met"
+    "matching" : "met",
+    "about": "Het CLARITY-project is een tweejarig project, gefinancierd door de Europese Commissie onder het Horizon 2020 framework met referentienummer: 693881",
+    "description": "Het CLARITY-project brengt netwerken van belanghebbenden in heel Europa samen in een geëngageerde en gemobiliseerde gemeenschap die innovatie ondersteunt in open digitale overheidstoepassingen.",
+    "title": "Clarity - case studies",
+    "github": "is beschikbaar als open source-toepassing, onderhouden door Code voor NL op <a href=\"https://github.com/codefornl/clarity\">github.com/codefornl/clarity</a>.",
+    "project": "is een onderdeel van het <a href=\"https://clarity-csa.eu/\">project Clarity Open eOverheid Services</a>.",
+    "contactcodefor": "Neem contact op met <a href=\"http://www.codefor.nl\">Code voor NL</a> voor meer informatie."
 }

@@ -1,41 +1,18 @@
 <!doctype html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Clarity - {{ translate("case studies", 2) }}</title>
-    <link href="/css/foundation.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
-    <link href="/css/style.css" rel="stylesheet" type="text/css">
-    <link href="/css/additions.css" rel="stylesheet" type="text/css">
-    
-    <meta property='og:url' content='{{ uri }}'>
-    <meta property='og:title' name='title' content="{{ cbase.name }}">
-    <meta property='og:description' name='description' content="{{ cbase.description }}">
-    <meta property='og:image' content="{{ (cbase._embedded.usecase|first).image }}">
-    <link rel='image_src' href="{{ (cbase._embedded.usecase|first).image }}"/>
-    <meta name='keywords' content="">
-    
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ cbase.name }}">
-    <meta name="twitter:description" content="{{ cbase.description }}">
-    <meta name="twitter:image:src" content="{{ (cbase._embedded.usecase|first).image }}">
-</head>
-
-<body class="layout">
-
-    <header class="main-header layout__main-header">
-        <a href="/#{{ cbase.slug }}">
-            {% if cbase.logo_image %}
-            <img src="{{ cbase.logo_image }}" alt="Clarity - case studies" class="main-header__logo">
-            {% else %}
-            <img src="/svg/clarity-casestudies-logo.svg" alt="Clarity - case studies" class="main-header__logo">
-            {% endif %}
-        </a>
-    </header>
+    {{ include('head.html') }}
+    <body class="layout">
+        <header class="main-header layout__main-header">
+            <a href="/#{{ cbase.slug }}">
+                {% if cbase.logo_image %}
+                <img src="{{ cbase.logo_image }}" alt="Clarity - case studies" class="main-header__logo">
+                {% else %}
+                <img src="/svg/clarity-casestudies-logo.svg" alt="Clarity - case studies" class="main-header__logo">
+                {% endif %}
+            </a>
+        </header>
 
     <main class="main-content layout__main-content">
-
         <form class="searchbar layout__searchbar" action="/cbase/{{ cbase.slug }}">
             <input type="text" class="searchbar__input" placeholder="{{ translate("Search") }} {{ cbase.name }} {{ translate("case studies", 2) }}" name="q" value="{{ q }}">
             <button class="searchbar__button"><img src="/svg/searchbar-icon.svg"></button>
