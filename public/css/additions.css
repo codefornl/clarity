@@ -87,9 +87,7 @@
 .project__location {
     overflow: hidden;
 }
-.layout__project-list-item {
-    padding: 0 10px 20px;
-}
+
 footer {
     background: #444;
 }

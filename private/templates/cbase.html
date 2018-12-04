@@ -70,40 +70,13 @@
             <div class="layout__project-list">
 
 {% for usecase in cbase._embedded.usecase %}
-
-                <a href="/cbase/{{ cbase.slug }}/usecase/{{ usecase.slug }}" name="{{ usecase.slug }}">
-                    <div class="project layout__project-list-item">
-                        <img
-                            data-original-img="{{ usecase.image }}"
-                            src="https://img.codefor.nl?url={{ (usecase.image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=426&width=640" class="project__image">
-                        <div class="project__meta">
-                            <div class="project__summary">
-                                <h3 class="project__title">{{ usecase.name }}</h3>
-                                <h4 class="project__location">{{ usecase.organisation }}</h4>
-                            </div>
-                            <!--
-                            <div class="project__tools">
-                                <img src="/svg/tools-icon.svg" class="project__tools-icon">
-                                <span class="project__tools-count">{{ usecase.tools|length }} tool</span>
-                            </div>
-                            -->
-                        </div>
-                    </div>
-                </a>
-
+    {{ include('partials/usecase-card.html')}}
 {% endfor %}
 
             </div>
         </div>
         
     </main>
-    <footer>
-        <div class="footer__text">
-            <p>"Clarity - case studies" is a part of the <a href="https://clarity-csa.eu/">Clarity Open eGovernment Services</a> project.</p>
-            <p>The CLARITY project is a two-year project, funded by the European Commission under the Horizon 2020 framework. Grant Agreement number: 693881</p>
-            <p>"Clarity - case studies" is available as an open source application, maintained by Code for NL on <a href="https://github.com/codefornl/clarity_slim">github.com/codefornl/clarity_slim</a>.</p>
-            <p>Please contact <a href="http://www.codefor.nl">Code for NL</a> for more information.</p>
-        </div>
-    </footer>
+    {{ include('footer.html')}}
 </body>
 </html>
