@@ -31,7 +31,13 @@
                     style="background-image: url(https://img.codefor.nl?url={{ (usecase.image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=426&width=640)">
                     <div class="project-detail__overlay">
                         <h1 class="project-detail__title">{{ usecase.name }}</h1>
-                        <h2 class="project-detail__location">{{ usecase.organisation }} ({{ usecase.country }})</h2>
+                        {% if usecase.organisation %}
+                            {% if usecase.country %}
+                                <h2 class="project-detail__location">{{ usecase.organisation }} ({{ usecase.country }})</h2>
+                            {% else %}
+                                <h2 class="project-detail__location">{{ usecase.organisation }}</h2>
+                            {% endif %}
+                        {% endif %}
                     </div>
                 </div>
                 <div class="wrapper__text">
