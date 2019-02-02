@@ -19,7 +19,7 @@ $app->get('/cbases', function (Request $request, Response $response) {
             "self_slug" => [
                 "href" => $request->getUri()->getBaseUrl() . "/cbases/{$cbase["slug"]}"
             ],
-            "find" => [
+            "filter" => [
                 "href" => "/cbases/{$cbase["id"]}{?q}",
                 "templated" => true
             ],
@@ -54,12 +54,12 @@ $app->get('/cbases', function (Request $request, Response $response) {
     return $response->withJson([
         "_links" => [
             "self" => [
-                "href" => $request->getUri()->getBaseUrl() . "/cbases" . ($q ? "?q={$q}" : "")
+                "href" => $request->getUri()->getBaseUrl() . "/cbases"
             ],
             "home" => [
                 "href" => $request->getUri()->getBaseUrl()
             ],
-            "find" => [
+            "filter" => [
                 "href" => "/cbases{?q}",
                 "templated" => true
             ]
@@ -89,6 +89,10 @@ $app->get('/cbases/{cbaseId}', function (Request $request, Response $response) {
         ],
         "self_slug" => [
             "href" => $request->getUri()->getBaseUrl() . "/cbases/{$cbase["slug"]}"
+        ],
+        "filter" => [
+            "href" => "/cbases/{$cbase["id"]}{?q}",
+            "templated" => true
         ],
         "cbases" => [
             "href" => $request->getUri()->getBaseUrl() . "/cbases"
