@@ -1,5 +1,5 @@
 # clarity
-Clarity Case Studies
+Clarity Case Studies (https://clarity.codefor.nl) is a project to create and share curated sets (cbases) of use cases of civic tech and gov tech. It runs on top of the cbase API at https://cbase.codefor.nl, which is an open HAL complient API.
 
 ## environment variables
 BASE_URI : url of the cbase api
