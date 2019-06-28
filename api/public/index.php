@@ -57,7 +57,14 @@ $app->get('/', function (Request $request, Response $response) {
         "application" => "https://clarity.codefor.nl",
         "codebase" => "https://github.com/codefornl/clarity_slim",
         "_links" => [
-            "self" => [
+            "curies" => [
+                [
+                    "name" => "cfnl",
+                    "href" => "https://www.codefor.nl/clarity",
+                    "templates" => false
+                ]
+            ],
+            "cfnl:self" => [
                 "href" => $request->getUri()->getBaseUrl()
             ],
             "cbases" => [

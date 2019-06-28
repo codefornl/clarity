@@ -12,17 +12,21 @@
     <meta property='og:url' content='{{ uri }}'>
     <meta property='og:title' name='title' content="{{ usecase.name }}">
     <meta property='og:description' name='description' content="{{ usecase.teaser }}">
-    <meta property='og:image' content="{{ usecase.image }}">
-    <link rel='image_src' href="{{ usecase.image }}"/>
+    <meta property='og:image' content="https://img.codefor.nl?url={{ (usecase.image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=426&width=640">
+    <link rel='image_src' href="https://img.codefor.nl?url={{ (usecase.image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=426&width=640"/>
     <meta name='keywords' content="">
     
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:username" content="@codefornl">
     <meta name="twitter:title" content="{{ usecase.name }}">
     <meta name="twitter:description" content="{{ usecase.teaser }}">
-    <meta name="twitter:image:src" content="{{ usecase.image }}">
+    <meta name="twitter:image:src" content="https://img.codefor.nl?url={{ (usecase.image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=426&width=640">
     
+    <link rel='image_src' href='https://www.codefor.nl/img/larger_CfNL.png'/>
+    <link rel='shortcut icon' type='image/png' href='https://www.codefor.nl/img/larger_CfNL.png'>
 </head>
 <body class="layout">
+    {% include 'nav.html' %}
 
     <header class="main-header layout__main-header">
         <a href="/#{{ usecase._embedded.cbase.slug }}">
