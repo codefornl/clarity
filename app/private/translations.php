@@ -1,6 +1,9 @@
 <?php
 
 return [
+    "show cases" => [
+        "nld" => "show cases"
+    ],
     "case studies" => [
         "nld" => "case studies"
     ],

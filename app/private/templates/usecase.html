@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Clarity - case studies</title>
+    <title>Clarity - show cases</title>
     <link href="/css/foundation.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet" type="text/css">
@@ -31,9 +31,9 @@
     <header class="main-header layout__main-header">
         <a href="/#{{ usecase._embedded.cbase.slug }}">
             {% if usecase._embedded.cbase.logo_image %}
-            <img src="{{ usecase._embedded.cbase.logo_image }}" alt="Clarity - case studies" class="main-header__logo">
+            <img src="{{ usecase._embedded.cbase.logo_image }}" alt="Clarity - show cases" class="main-header__logo">
             {% else %}
-            <img src="/svg/clarity-casestudies-logo.svg" alt="Clarity - case studies" class="main-header__logo">
+            <img src="/svg/clarity-showcases-logo.svg" alt="Clarity - show cases" class="main-header__logo">
             {% endif %}
         </a>
     </header>
@@ -41,13 +41,13 @@
     <main class="main-content layout__main-content">
 
         <form class="searchbar layout__searchbar" action="/cbase/{{ usecase._embedded.cbase.slug }}">
-            <input type="text" class="searchbar__input" placeholder="{{ translate("Search", usecase._embedded.cbase.language) }} {{ usecase._embedded.cbase.name }} {{ translate("case studies", usecase._embedded.cbase.language) }}" name="q" value="{{ q }}">
+            <input type="text" class="searchbar__input" placeholder="{{ translate("Search", usecase._embedded.cbase.language) }} {{ usecase._embedded.cbase.name }} {{ translate("show cases", usecase._embedded.cbase.language) }}" name="q" value="{{ q }}">
             <button class="searchbar__button"><img src="/svg/searchbar-icon.svg"></button>
         </form>
 
         <div class="layout__row">
 
-            <a href="/cbase/{{ usecase._embedded.cbase.slug }}#{{ usecase.slug }}" class="back-link layout__back">&larr; {{ usecase._embedded.cbase.name }} {{ translate("case studies", usecase._embedded.cbase.language) }}</a>
+            <a href="/cbase/{{ usecase._embedded.cbase.slug }}#{{ usecase.slug }}" class="back-link layout__back">&larr; {{ usecase._embedded.cbase.name }} {{ translate("show cases", usecase._embedded.cbase.language) }}</a>
 
             <article class="project-detail layout__project-detail">
                 <div class="project-detail__image"

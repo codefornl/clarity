@@ -27,7 +27,7 @@
   font-family: 'Open Sans', sans-serif;
   font-size: inherit;
   text-decoration: underline;
-  color: #74C7A8;
+  color: #557deb;
 }
 .text-placeholder {
   font-family: 'Open Sans', sans-serif;
@@ -54,7 +54,7 @@
   font-family: 'Open Sans', sans-serif;
   font-size: 18px;
   line-height: 1.6;
-  border: 2px solid rgba(130, 130, 130, 0.2);
+  border: 2px solid rgba(0, 0, 130, 0.2);
   border-radius: 0;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -77,7 +77,7 @@
   }
 }
 .searchbar__button {
-  background: #74C7A8;
+  background: #557deb;
   padding: 10px 15px;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
@@ -98,7 +98,7 @@
   font-family: 'Open Sans', sans-serif;
   font-size: 18px;
   line-height: 1.6;
-  color: #74C7A8;
+  color: #557deb;
   font-weight: 600;
   margin-bottom: 10px;
 }
@@ -129,7 +129,7 @@
   font-family: 'Open Sans', sans-serif;
   font-size: 18px;
   line-height: 1.6;
-  background: #74C7A8;
+  background: #557deb;
   display: inline-block;
   padding: 1px 8px;
   color: #fff;
@@ -156,7 +156,7 @@
   width: 100%;
 }
 .project__meta {
-  background: #74C7A8;
+  background: #557deb;
   padding: 15px;
   height: 80px;
 }
@@ -256,13 +256,13 @@
   margin-top: 80px;
 }
 .back-link {
-  color: #74C7A8;
+  color: #557deb;
   font-family: 'Open Sans', sans-serif;
   font-size: 18px;
   line-height: 1.6;
 }
 .main-content {
-  background: #fff;
+  background: #f1f3fb;
 }
 .wrapper__text p {
   font-family: 'Open Sans', sans-serif;
@@ -287,7 +287,7 @@
   line-height: 1.4;
 }
 .wrapper__text a {
-  color: #74C7A8;
+  color: #557deb;
 }
 .layout {
   /* debug */

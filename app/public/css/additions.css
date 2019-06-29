@@ -57,7 +57,7 @@
 .project-delete .project-delete__button {
     font-family: 'Open Sans', sans-serif;
     line-height: 1.6;
-    background: #557deb;
+    background: #74C7A8;
     display: inline-block;
     padding: 1px 8px;
     color: #fff;
@@ -74,7 +74,7 @@
     min-height: 120px;
 }
 .forward-link {
-    color: #557deb;
+    color: #74C7A8;
     font-family: 'Open Sans', sans-serif;
     font-size: 18px;
     line-height: 1.6;

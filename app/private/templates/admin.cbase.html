@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Clarity - case studies</title>
+    <title>Clarity - show cases</title>
     <link href="/css/foundation.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet" type="text/css">
@@ -22,14 +22,14 @@
 
     <header class="main-header layout__main-header">
         <a href="/cbase/{{ cbase.slug }}" target="__blank">
-            <img src="/svg/clarity-casestudies-logo.svg" alt="Clarity - case studies" class="main-header__logo">
+            <img src="/svg/clarity-showcases-logo.svg" alt="Clarity - show cases" class="main-header__logo">
         </a>
     </header>
 
     <main class="main-content layout__main-content">
         
         <form class="searchbar layout__searchbar" style="visibility: hidden">
-            <input type="text" class="searchbar__input" placeholder="Search {{ cbase.name }} case studies" name="q" value="">
+            <input type="text" class="searchbar__input" placeholder="Search {{ cbase.name }} show cases" name="q" value="">
             <button class="searchbar__button"><img src="/svg/searchbar-icon.svg"></button>
         </form>
 
@@ -41,7 +41,7 @@
                     <a href="/admin/cbase/{{ cbase.slug }}?token={{ token }}">
                         <h2 class="list-summary__title">{{ cbase.name }}</h2>
                     </a>
-                    <div class="list-summary__count">{{ cbase._embedded.usecase|length }} case studies</div>
+                    <div class="list-summary__count">{{ cbase._embedded.usecase|length }} show cases</div>
                     <p class="list-summary__description">{{ cbase.description }}</p>
                     <div class="list-summary__curator">
                         <div class="curator">

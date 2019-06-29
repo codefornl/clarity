@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Clarity - case studies</title>
+    <title>Clarity - show cases</title>
     <link href="/css/foundation.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet" type="text/css">
@@ -21,21 +21,21 @@
 
     <header class="main-header layout__main-header">
         <a href="/cbase/{{ usecase._embedded.cbase.slug }}/usecase/{{ usecase.slug }}" target="__blank">
-            <img src="/svg/clarity-casestudies-logo.svg" alt="Clarity - case studies" class="main-header__logo">
+            <img src="/svg/clarity-showcases-logo.svg" alt="Clarity - show cases" class="main-header__logo">
         </a>
     </header>
 
     <main class="main-content layout__main-content">
 
         <form class="searchbar layout__searchbar" style="visibility: hidden">
-            <input type="text" class="searchbar__input" placeholder="Search {{ usecase._embedded.cbase.name }} case studies">
+            <input type="text" class="searchbar__input" placeholder="Search {{ usecase._embedded.cbase.name }} show cases">
             <button class="searchbar__button"><img src="/svg/searchbar-icon.svg"></button>
         </form>
 
         <div class="layout__row">
 
             <div class="layout__back">
-                <a href="/admin/cbase/{{ usecase._embedded.cbase.slug }}?token={{ token }}" class="back-link">&larr; {{ usecase._embedded.cbase.name }} case studies</a>
+                <a href="/admin/cbase/{{ usecase._embedded.cbase.slug }}?token={{ token }}" class="back-link">&larr; {{ usecase._embedded.cbase.name }} show cases</a>
                 
                 <form class="project-update" method="post" action="/admin/cbase/{{ usecase._embedded.cbase.slug }}/usecase/{{ usecase.slug }}/update?token={{ token }}">
                     <h3 class="project-update__header">Name</h3>
