@@ -1,0 +1,19 @@
+<a href="/cbase/{{ cbase.slug }}/usecase/{{ usecase.slug }}">
+    <div class="project layout__project-list-item">
+        <img
+            data-original-img="{{ usecase.image }}"
+            src="https://img.codefor.nl?url={{ (usecase.image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=426&width=640" class="project__image">
+        <div class="project__meta">
+            <div class="project__summary">
+                <h3 class="project__title">{{ usecase.name }}</h3>
+                <h4 class="project__location">{{ usecase.organisation }}</h4>
+            </div>
+            <!--
+            <div class="project__tools">
+                <img src="/svg/tools-icon.svg" class="project__tools-icon">
+                <span class="project__tools-count">{{ usecase.tools|length }} tool</span>
+            </div>
+            -->
+        </div>
+    </div>
+</a>

@@ -1,0 +1,36 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: clarity-service
+spec:
+  selector:
+    app: clarity
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-clarity
+  labels:
+    app: clarity
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clarity
+  template:
+    metadata:
+      labels:
+        app: clarity
+    spec:
+      imagePullSecrets:
+      - name: pipeline-docker-registry
+      containers:
+      - name: clarity
+        image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
+        ports:
+        - containerPort: 80

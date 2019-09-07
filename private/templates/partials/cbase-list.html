@@ -1,0 +1,22 @@
+<div class="layout__row">
+    <a name="{{ cbase.slug }}"></a>
+
+    <div class="layout__list-meta">
+
+        {{ include('partials/cbase-card.html') }}
+
+        {% if cbase._embedded.usecase|length > 3 %}
+            <a href="/cbase/{{ cbase.slug }}" class="forward-link">{{ translate("All") }} {{ cbase.name }} {{ translate("case studies", cbase._embedded.usecase|length) }} →</a>
+        {% endif %}
+    </div>
+
+    <div class="layout__project-list">
+
+    {% for usecase in cbase._embedded.usecase|shuffle|slice(0, 3) %}
+        {{ include('partials/usecase-card.html')}}
+    {% endfor %}
+
+    </div>
+</div>
+
+<hr>

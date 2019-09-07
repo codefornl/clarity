@@ -1,0 +1,30 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ translate('title') }}</title>
+    <link href="/css/foundation.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link href="/css/additions.css" rel="stylesheet" type="text/css">
+    <meta property='og:url' content='{{ uri }}'>
+    {% if usecase %}
+        <meta property='og:title' name='title' content="{{ usecase.name }}">
+        <meta property='og:description' name='description' content="{{ usecase.teaser }}">
+        <meta property='og:image' content="{{ usecase.image }}">
+        <link rel='image_src' href="{{ usecase.image }}"/>
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{ usecase.name }}">
+        <meta name="twitter:description" content="{{ usecase.teaser }}">
+        <meta name="twitter:image:src" content="{{ usecase.image }}">
+    {% else %}
+        <meta property='og:title' name='title' content="{{ translate('title') }}">
+        <meta property='og:description' name='description' content="{{ translate('description')}}">
+        <meta property='og:image' content="https://clarity-csa.eu/sites/default/files/slider_07.png">
+        <link rel='image_src' href="https://clarity-csa.eu/sites/default/files/slider_07.png"/>
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{ translate('title') }}">
+        <meta name="twitter:description" content="{{ translate('description')}}">
+        <meta name="twitter:image:src" content="https://clarity-csa.eu/sites/default/files/slider_07.png">
+    {% endif %}
+    <meta name='keywords' content="">
+</head>
