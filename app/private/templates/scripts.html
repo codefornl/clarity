@@ -1,0 +1,47 @@
+<script>
+    $('input[type=file]').on("change", function() {
+        var $input = $(this);
+        var $files = $input.get(0).files;
+
+        if ($files.length) {
+          // Reject big files
+          if ($files[0].size > $input.data("max-size") * 1024) {
+            alert("Please select a smaller file");
+            return false;
+          }
+
+          $(".img-preview").show();
+
+          var apiUrl = 'https://api.imgur.com/3/image';
+          var apiKey = 'af99efb764e35e7';
+
+          var settings = {
+            //async: false,
+            crossDomain: true,
+            processData: false,
+            contentType: false,
+            type: 'POST',
+            url: apiUrl,
+            headers: {
+              Authorization: 'Client-ID ' + apiKey,
+              Accept: 'application/json'
+            },
+            mimeType: 'multipart/form-data'
+          };
+
+          var formData = new FormData();
+          formData.append("image", $files[0]);
+          settings.data = formData;
+
+          // Response contains stringified JSON
+          // Image URL available at response.data.link
+          $.ajax(settings).done(function(response) {
+            var data = JSON.parse(response);
+            foto = data.data.link;
+            $(".img-preview").attr("src", foto);
+            $("[name='image']").val(foto);
+          });
+
+        }
+    });
+</script>
