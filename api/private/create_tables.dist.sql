@@ -13,6 +13,7 @@ CREATE TABLE `cbases` (
   `language` char(3) NOT NULL,
   `promote` tinyint(1) NOT NULL,
   `logo_image` varchar(255) NOT NULL,
+  `highlight_color` varchar(7) NOT NULL,
   `disabled` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
@@ -26,6 +27,7 @@ CREATE TABLE `projects` (
   `description` text NOT NULL,
   `image` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
+  `location` varchar(255) NOT NULL,
   `country` varchar(255) NOT NULL,
   `category` varchar(255) NOT NULL,
   `organisation` varchar(255) NOT NULL,
@@ -42,3 +44,4 @@ CREATE TABLE `projects` (
 
 ALTER TABLE `projects`
   ADD CONSTRAINT `projects_ibfk_1` FOREIGN KEY (`cbase_id`) REFERENCES `cbases` (`id`) ON DELETE CASCADE;
+

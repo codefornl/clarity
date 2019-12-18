@@ -27,6 +27,16 @@
 </head>
 
 <body class="layout">
+
+    {% if cbase.highlight_color %}
+    <style>
+        .project__meta,
+        .curator__badge,
+        .searchbar__button { background: {{ cbase.highlight_color }} }
+        .list-summary__count { color: {{ cbase.highlight_color }} }
+    </style>
+    {% endif %}
+
     {% include 'nav.html' %}
 
     <header class="main-header layout__main-header">

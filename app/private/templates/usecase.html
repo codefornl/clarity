@@ -26,6 +26,16 @@
     <link rel='shortcut icon' type='image/png' href='https://www.codefor.nl/img/larger_CfNL.png'>
 </head>
 <body class="layout">
+
+    {% if usecase._embedded.cbase.highlight_color %}
+    <style>
+        .curator__badge,
+        .searchbar__button { background: {{ usecase._embedded.cbase.highlight_color }} }
+        .back-link,
+        .wrapper__text a { color: {{ usecase._embedded.cbase.highlight_color }} }
+    </style>
+    {% endif %}
+
     {% include 'nav.html' %}
 
     <header class="main-header layout__main-header">

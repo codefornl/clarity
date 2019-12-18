@@ -24,7 +24,8 @@ class Handler {
                 image,
                 language,
                 promote,
-                logo_image
+                logo_image,
+                highlight_color
             FROM
                 cbases
             WHERE
@@ -67,7 +68,8 @@ class Handler {
                 admin_email,
                 image,
                 language,
-                logo_image
+                logo_image,
+                highlight_color
             FROM
                 cbases
             WHERE id = :id
@@ -93,7 +95,8 @@ class Handler {
                 admin_email,
                 image,
                 language,
-                logo_image
+                logo_image,
+                highlight_color
             FROM
                 cbases
             WHERE slug = :slug
