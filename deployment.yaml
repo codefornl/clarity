@@ -2,38 +2,35 @@ kind: Service
 apiVersion: v1
 metadata:
   name: clarity-service
-  namespace: default
 spec:
-  clusterIP: None
-  type: ClusterIP
+  selector:
+    app: clarity
+  type: NodePort
   ports:
-    - name: default
+    - protocol: TCP
       port: 80
-      protocol: TCP
       targetPort: 80
-  sessionAffinity: None
-  type: ClusterIP
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: clarity-service
+  name: example-clarity
   labels:
-    app: clarity-service
+    app: clarity
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: clarity-service
+      app: clarity
   template:
     metadata:
       labels:
-        app: clarity-service
+        app: clarity
     spec:
       imagePullSecrets:
       - name: pipeline-docker-registry
       containers:
-      - name: clarity-service
+      - name: clarity
         image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
         ports:
         - containerPort: 80
