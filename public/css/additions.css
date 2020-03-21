@@ -1,8 +1,4 @@
-.layout__row {
-    padding: 20px 0;
-}
 .admin-mode-notifier {
-    font-family: 'Open Sans', sans-serif;
     font-size: 18px;
     text-align: center;
     color: #fff;
@@ -25,7 +21,6 @@
 }
 .cbase-update .cbase-update__header,
 .project-update .project-update__header {
-    font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     line-height: 1.4;
     margin-bottom: 2px;
@@ -35,7 +30,6 @@
 .cbase-update .cbase-update__input,
 .project-create .project-create__input,
 .project-update .project-update__input {
-    font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     line-height: 1.4;
     width: 100%;
@@ -44,7 +38,6 @@
 }
 .cbase-update .cbase-update__textarea,
 .project-update .project-update__textarea {
-    font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     width: 100%;
     border: 0;
@@ -55,9 +48,8 @@
 .project-create .project-create__button,
 .project-update .project-update__button,
 .project-delete .project-delete__button {
-    font-family: 'Open Sans', sans-serif;
     line-height: 1.6;
-    background: #557deb;
+    background: #E15532;
     display: inline-block;
     padding: 1px 8px;
     color: #fff;
@@ -74,28 +66,18 @@
     min-height: 120px;
 }
 .forward-link {
-    color: #557deb;
-    font-family: 'Open Sans', sans-serif;
+    color: #E15532;
     font-size: 18px;
     line-height: 1.6;
     margin-top: 40px;
     display: block;
 }
-.project__title {
-    overflow: hidden;
-}
-.project__location {
-    overflow: hidden;
-}
-.layout__project-list-item {
-    padding: 0 10px 20px;
-}
+
 footer {
     background: #444;
 }
 .footer__text {
     color: #fff;
-    font-family: 'Open Sans', sans-serif;
     padding: 10px;
     font-size: 0.8em;
     line-height: 1.4em;

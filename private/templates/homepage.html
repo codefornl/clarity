@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Clarity - case studies</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Anton&amp;display=swap" rel="stylesheet">
     <link href="/css/foundation.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet" type="text/css">
     <link href="/css/additions.css" rel="stylesheet" type="text/css">
     
@@ -24,18 +25,20 @@
 
 <body class="layout">
 
-    <header class="main-header layout__main-header">
-        <a href="/">
-            <img src="/svg/clarity-casestudies-logo.svg" alt="Clarity - case studies" class="main-header__logo">
-        </a>
+    <header>
+        <div class="nav__logo">
+            <img src="/img/Logo-slash-01.png" style="height: 48px"> <span class="nav__logo--background-orange">&nbsp;CODE for NL&nbsp;</span>
+            <div style="margin-top: 10px; font-size: 12px; margin-left: 80px">Collecties</div>
+        </div>
+        <div class="nav__search">
+            <form class="searchbar layout__searchbar">
+                <input type="text" class="searchbar__input" placeholder="Search cbases" name="q" value="{{ q }}">
+                <button class="searchbar__button"><img src="/svg/searchbar-icon.svg"></button>
+            </form>
+        </div>
     </header>
 
     <main class="main-content layout__main-content">
-
-        <form class="searchbar layout__searchbar">
-            <input type="text" class="searchbar__input" placeholder="Search cbases" name="q" value="{{ q }}">
-            <button class="searchbar__button"><img src="/svg/searchbar-icon.svg"></button>
-        </form>
         
 {% for cbase in cbases %}
 
@@ -60,13 +63,15 @@
                                 <div class="curator__badge">{{ translate("curator", cbase.language) }}</div>
                                 <a href="mailto:{{ cbase.admin_email }}" class="curator__email">{{ cbase.admin_email }}</a>
                             </div>
+                            <div>
+                                {% if cbase._embedded.usecase|length > 3 %}
+                                <a href="/cbase/{{ cbase.slug }}" class="forward-link">{{ translate("All", cbase.language) }} {{ cbase.name }} {{ translate("case studies", cbase.language) }} →</a>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
 
-{% if cbase._embedded.usecase|length > 3 %}
-                <a href="/cbase/{{ cbase.slug }}" class="forward-link">{{ translate("All", cbase.language) }} {{ cbase.name }} {{ translate("case studies", cbase.language) }} →</a>
-{% endif %}
 
             </div>
 
@@ -74,16 +79,17 @@
 
 {% for usecase in cbase._embedded.usecase|shuffle|slice(0, 3) %}
                 
-                <a href="/cbase/{{ cbase.slug }}/usecase/{{ usecase.slug }}">
-                    <div class="project layout__project-list-item">
-                        <img
-                            data-original-img="{{ usecase.image }}"
-                            src="https://img.codefor.nl?url={{ (usecase.image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=426&width=640" class="project__image">
+                
+                <div class="project layout__project-list-item">
+                    <a class="layout__project_list-item-wrapper" href="/cbase/{{ cbase.slug }}/usecase/{{ usecase.slug }}">
+                        <div class="project_list-item-top">
+                            <img
+                                data-original-img="{{ usecase.image }}"
+                                src="https://img.codefor.nl?url={{ (usecase.image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=426&width=640" class="project__image">
+                        </div>
                         <div class="project__meta">
-                            <div class="project__summary">
-                                <h3 class="project__title">{{ usecase.name }}</h3>
-                                <h4 class="project__location">{{ usecase.organisation }}</h4>
-                            </div>
+                            <h3 class="project__title">{{ usecase.name }}</h3>
+                            <h4 class="project__location">{{ usecase.organisation }}</h4>
                             <!--
                             <div class="project__tools">
                                 <img src="/svg/tools-icon.svg" class="project__tools-icon">
@@ -91,16 +97,16 @@
                             </div>
                             -->
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
+                
                 
 {% endfor %}
 
             </div>
         </div>
         
-        <hr>
-        
+       
 {% endfor %}
         
     </main>

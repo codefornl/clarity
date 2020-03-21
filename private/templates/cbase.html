@@ -24,16 +24,6 @@
 
 <body class="layout">
 
-    <header class="main-header layout__main-header">
-        <a href="/#{{ cbase.slug }}">
-            {% if cbase.logo_image %}
-            <img src="{{ cbase.logo_image }}" alt="Clarity - case studies" class="main-header__logo">
-            {% else %}
-            <img src="/svg/clarity-casestudies-logo.svg" alt="Clarity - case studies" class="main-header__logo">
-            {% endif %}
-        </a>
-    </header>
-
     <main class="main-content layout__main-content">
 
         <form class="searchbar layout__searchbar" action="/cbase/{{ cbase.slug }}">
@@ -71,16 +61,16 @@
 
 {% for usecase in cbase._embedded.usecase %}
 
-                <a href="/cbase/{{ cbase.slug }}/usecase/{{ usecase.slug }}" name="{{ usecase.slug }}">
-                    <div class="project layout__project-list-item">
-                        <img
-                            data-original-img="{{ usecase.image }}"
-                            src="https://img.codefor.nl?url={{ (usecase.image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=426&width=640" class="project__image">
+                <div class="project layout__project-list-item">
+                    <a class="layout__project_list-item-wrapper" href="/cbase/{{ cbase.slug }}/usecase/{{ usecase.slug }}">
+                        <div class="project_list-item-top">
+                            <img
+                                data-original-img="{{ usecase.image }}"
+                                src="https://img.codefor.nl?url={{ (usecase.image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=426&width=640" class="project__image" />
+                        </div>
                         <div class="project__meta">
-                            <div class="project__summary">
-                                <h3 class="project__title">{{ usecase.name }}</h3>
-                                <h4 class="project__location">{{ usecase.organisation }}</h4>
-                            </div>
+                            <h3 class="project__title">{{ usecase.name }}</h3>
+                            <h4 class="project__location">{{ usecase.organisation }}</h4>
                             <!--
                             <div class="project__tools">
                                 <img src="/svg/tools-icon.svg" class="project__tools-icon">
@@ -88,8 +78,9 @@
                             </div>
                             -->
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
+
 
 {% endfor %}
 

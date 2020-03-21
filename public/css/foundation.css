@@ -11,6 +11,7 @@ html {
     line-height: 1;
 }
 body {
+    font-family: "Lato", "Verdana", "Arial", sans-serif;
     position: relative;
     margin: 0;
 }
