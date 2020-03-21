@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet" type="text/css">
     <link href="/css/additions.css" rel="stylesheet" type="text/css">
-    
+
 </head>
 
 <body class="layout">
@@ -25,7 +25,7 @@
     </header>
 
     <main class="main-content layout__main-content">
-        
+
         <form class="searchbar layout__searchbar" style="visibility: hidden">
             <input type="text" class="searchbar__input" placeholder="Search {{ cbase.name }} case studies" name="q" value="">
             <button class="searchbar__button"><img src="/svg/searchbar-icon.svg"></button>
@@ -53,14 +53,14 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
-                
+
                 <form class="project-create" method="post" action="/admin/cbase/{{ cbase.slug }}/usecase/create?token={{ token }}">
                     <input class="project-create__input" type="text" name="name" placeholder="Name"><br>
                     <button class="project-create__button" type="submit">Create use case</button>
                 </form>
-                
+
                 <form class="cbase-update" method="post" action="/admin/cbase/{{ cbase.slug }}/update?token={{ token }}">
                     <h3 class="cbase-update__header">Name</h3>
                     <input class="cbase-update__input" type="text" name="name" value="{{ cbase.name }}"><br>
@@ -74,7 +74,7 @@
                     <textarea class="cbase-update__textarea" name="description">{{ cbase.description }}</textarea>
                     <button class="cbase-update__button" type="submit">Update cbase</button>
                 </form>
-                
+
                 <form class="cbase-update" method="post" action="/admin/cbase/{{ cbase.slug }}/regenerate">
                     <h3 class="cbase-update__header">Password</h3>
                     <input class="cbase-update__input" type="password" name="password">
@@ -111,15 +111,10 @@
 
             </div>
         </div>
-        
+
     </main>
-    <footer>
-        <div class="footer__text">
-            <p>"Clarity - case studies" is a part of the <a href="https://clarity-csa.eu/">Clarity Open eGovernment Services</a> project.</p>
-            <p>The CLARITY project is a two-year project, funded by the European Commission under the Horizon 2020 framework. Grant Agreement number: 693881</p>
-            <p>"Clarity - case studies" is available as an open source application, maintained by Code for NL on <a href="https://github.com/codefornl/clarity_slim">github.com/codefornl/clarity_slim</a>.</p>
-            <p>Please contact <a href="http://www.codefor.nl">Code for NL</a> for more information.</p>
-        </div>
-    </footer>
+
+{% include 'footer.html' %}
+
 </body>
 </html>

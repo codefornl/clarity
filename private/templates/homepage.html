@@ -9,14 +9,14 @@
     <link href="/css/foundation.css" rel="stylesheet" type="text/css">
     <link href="/css/style.css" rel="stylesheet" type="text/css">
     <link href="/css/additions.css" rel="stylesheet" type="text/css">
-    
+
     <meta property='og:url' content='{{ uri }}'>
     <meta property='og:title' name='title' content="Clarity - case studies">
     <meta property='og:description' name='description' content="The CLARITY project brings together stakeholder networks across Europe into an engaged and mobilised community that supports innovation in open eGovernment applications.">
     <meta property='og:image' content="https://clarity-csa.eu/sites/default/files/slider_07.png">
     <link rel='image_src' href="https://clarity-csa.eu/sites/default/files/slider_07.png"/>
     <meta name='keywords' content="">
-    
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Clarity - case studies">
     <meta name="twitter:description" content="The CLARITY project brings together stakeholder networks across Europe into an engaged and mobilised community that supports innovation in open eGovernment applications.">
@@ -39,7 +39,7 @@
     </header>
 
     <main class="main-content layout__main-content">
-        
+
 {% for cbase in cbases %}
 
         <div class="layout__row">
@@ -78,8 +78,8 @@
             <div class="layout__project-list">
 
 {% for usecase in cbase._embedded.usecase|shuffle|slice(0, 3) %}
-                
-                
+
+
                 <div class="project layout__project-list-item">
                     <a class="layout__project_list-item-wrapper" href="/cbase/{{ cbase.slug }}/usecase/{{ usecase.slug }}">
                         <div class="project_list-item-top">
@@ -99,24 +99,19 @@
                         </div>
                     </a>
                 </div>
-                
-                
+
+
 {% endfor %}
 
             </div>
         </div>
-        
-       
+
+
 {% endfor %}
-        
+
     </main>
-    <footer>
-        <div class="footer__text">
-            <p>"Clarity - case studies" is a part of the <a href="https://clarity-csa.eu/">Clarity Open eGovernment Services</a> project.</p>
-            <p>The CLARITY project is a two-year project, funded by the European Commission under the Horizon 2020 framework. Grant Agreement number: 693881</p>
-            <p>"Clarity - case studies" is available as an open source application, maintained by Code for NL on <a href="https://github.com/codefornl/clarity_slim">github.com/codefornl/clarity_slim</a>.</p>
-            <p>Please contact <a href="http://www.codefor.nl">Code for NL</a> for more information.</p>
-        </div>
-    </footer>
+
+{% include 'footer.html' %}
+
 </body>
 </html>

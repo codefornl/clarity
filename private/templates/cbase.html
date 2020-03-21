@@ -9,15 +9,15 @@
     <link href="/css/foundation.css" rel="stylesheet" type="text/css">
     <link href="/css/style.css" rel="stylesheet" type="text/css">
     <link href="/css/additions.css" rel="stylesheet" type="text/css">
-    
-    
+
+
     <meta property='og:url' content='{{ uri }}'>
     <meta property='og:title' name='title' content="{{ cbase.name }}">
     <meta property='og:description' name='description' content="{{ cbase.description }}">
     <meta property='og:image' content="{{ (cbase._embedded.usecase|first).image }}">
     <link rel='image_src' href="{{ (cbase._embedded.usecase|first).image }}"/>
     <meta name='keywords' content="">
-    
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ cbase.name }}">
     <meta name="twitter:description" content="{{ cbase.description }}">
@@ -95,15 +95,10 @@
 
             </div>
         </div>
-        
+
     </main>
-    <footer>
-        <div class="footer__text">
-            <p>"Clarity - case studies" is a part of the <a href="https://clarity-csa.eu/">Clarity Open eGovernment Services</a> project.</p>
-            <p>The CLARITY project is a two-year project, funded by the European Commission under the Horizon 2020 framework. Grant Agreement number: 693881</p>
-            <p>"Clarity - case studies" is available as an open source application, maintained by Code for NL on <a href="https://github.com/codefornl/clarity_slim">github.com/codefornl/clarity_slim</a>.</p>
-            <p>Please contact <a href="http://www.codefor.nl">Code for NL</a> for more information.</p>
-        </div>
-    </footer>
+
+{% include 'footer.html' %}
+
 </body>
 </html>

@@ -10,7 +10,7 @@
     <link href="/css/additions.css" rel="stylesheet" type="text/css">
 </head>
 <body class="layout">
-        
+
     <h1 class="admin-mode-notifier">
         ADMIN MODE
         <a style="float: right; margin-right: 1em; font-weight: 900" href="/cbase/{{ usecase._embedded.cbase.slug }}/usecase/{{ usecase.slug }}">✖</a>
@@ -33,7 +33,7 @@
 
             <div class="layout__back">
                 <a href="/admin/cbase/{{ usecase._embedded.cbase.slug }}?token={{ token }}" class="back-link">&larr; {{ usecase._embedded.cbase.name }} case studies</a>
-                
+
                 <form class="project-update" method="post" action="/admin/cbase/{{ usecase._embedded.cbase.slug }}/usecase/{{ usecase.slug }}/update?token={{ token }}">
                     <h3 class="project-update__header">Name</h3>
                     <input class="project-update__input" type="text" name="name" value="{{ usecase.name }}"><br>
@@ -63,7 +63,7 @@
                     <input class="project-update__input" type="text" name="contact_email" value="{{ usecase.contact_email }}"><br>
                     <button class="project-update__button" type="submit">Save / update</button>
                 </form>
-        
+
                 <form class="project-delete" method="post" action="/admin/cbase/{{ usecase._embedded.cbase.slug }}/usecase/{{ usecase.slug }}/delete?token={{ token }}">
                     <button class="project-delete__button" type="submit" onclick="if (!confirm('Are you sure you want to delete this use case?')) return false;">Delete this Use Case</button>
                 </form>
@@ -121,13 +121,8 @@
 
         </div>
     </main>
-    <footer>
-        <div class="footer__text">
-            <p>"Clarity - case studies" is a part of the <a href="https://clarity-csa.eu/">Clarity Open eGovernment Services</a> project.</p>
-            <p>The CLARITY project is a two-year project, funded by the European Commission under the Horizon 2020 framework. Grant Agreement number: 693881</p>
-            <p>"Clarity - case studies" is available as an open source application, maintained by Code for NL on <a href="https://github.com/codefornl/clarity_slim">github.com/codefornl/clarity_slim</a>.</p>
-            <p>Please contact <a href="http://www.codefor.nl">Code for NL</a> for more information.</p>
-        </div>
-    </footer>
+
+{% include 'footer.html' %}
+
 </body>
 </html>
