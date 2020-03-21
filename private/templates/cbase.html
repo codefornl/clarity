@@ -24,13 +24,20 @@
 
 <body class="layout">
 
+    <header>
+        <div class="nav__logo">
+            <img src="/img/Logo-slash-01.png" style="height: 48px"> <span class="nav__logo--background-orange">&nbsp;CODE for NL&nbsp;</span>
+            <div style="margin-top: 10px; font-size: 12px; margin-left: 80px">Collecties</div>
+        </div>
+        <div class="nav__search">
+            <form class="searchbar layout__searchbar"  action="/cbase/{{ cbase.slug }}">
+                <input type="text" class="searchbar__input" placeholder="{{ translate("Search", cbase.language) }} {{ cbase.name }} {{ translate("case studies", cbase.language) }}" name="q" value="{{ q }}" name="q" value="{{ q }}">
+                <button class="searchbar__button"><img src="/svg/searchbar-icon.svg"></button>
+            </form>
+        </div>
+    </header>
+
     <main class="main-content layout__main-content">
-
-        <form class="searchbar layout__searchbar" action="/cbase/{{ cbase.slug }}">
-            <input type="text" class="searchbar__input" placeholder="{{ translate("Search", cbase.language) }} {{ cbase.name }} {{ translate("case studies", cbase.language) }}" name="q" value="{{ q }}">
-            <button class="searchbar__button"><img src="/svg/searchbar-icon.svg"></button>
-        </form>
-
         <div class="layout__row">
 
             <div class="layout__list-meta">
