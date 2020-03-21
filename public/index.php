@@ -15,6 +15,9 @@ $config['twig']['cache'] = false; // false || 'path/to/cache'
 $config['api']['base_uri'] = getenv('BASE_URI');
 $config['api']['timeout'] = 2.0;
 
+$config['guzzle']['verify'] = false; // FIXME verify SSL connection
+$config['displayErrorDetails'] = false;
+
 $app = new \Slim\App([
     "settings" => $config
 ]);
@@ -45,6 +48,7 @@ $container['client'] = function ($c) {
     $client = new \GuzzleHttp\Client([
         'base_uri' => $c['settings']['api']['base_uri'],
         'timeout'  => $c['settings']['api']['timeout'],
+        'verify' => $c['settings']['guzzle']['verify'],
     ]);
     return $client;
 };

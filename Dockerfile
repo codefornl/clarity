@@ -22,5 +22,5 @@ RUN composer install -d /var/www/html
 VOLUME /var/www/html/public
 VOLUME /var/www/html/private
 
-ENV BASE_URI https://cbase.codefor.nl
+ENV BASE_URI https://collecties-api.codefor.nl
 USER root
