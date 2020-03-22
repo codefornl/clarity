@@ -28,10 +28,12 @@
 
 
     <header>
-        <div class="nav__logo">
-            <img src="/img/Logo-slash-01.png" style="height: 48px"> <span class="nav__logo--background-orange">&nbsp;CODE for NL&nbsp;</span>
-            <div style="margin-top: 10px; font-size: 12px; margin-left: 80px">Collecties</div>
-        </div>
+        <a href="/#{{ usecase._embedded.cbase.slug }}">
+            <div class="nav__logo">
+                <img src="/img/Logo-slash-01.png" style="height: 48px"> <span class="nav__logo--background-orange">&nbsp;CODE for NL&nbsp;</span>
+                <div style="margin-top: 10px; font-size: 12px; margin-left: 80px">Collecties</div>
+            </div>
+        </a>
         <div class="nav__search">
             <form class="searchbar layout__searchbar" action="/cbase/{{ usecase._embedded.cbase.slug }}">
                 <input type="text" class="searchbar__input" placeholder="{{ translate("Search", usecase._embedded.cbase.language) }} {{ usecase._embedded.cbase.name }} {{ translate("case studies", usecase._embedded.cbase.language) }}" name="q" value="{{ q }}">
