@@ -89,7 +89,11 @@
                         <div class="curator__contact">
                             <h3 class="curator__name">{{ usecase.contact_name }}</h3>
                             <div class="curator__badge">{{ translate("contact", usecase._embedded.cbase.language) }}</div>
+                            {% if 'http' in usecase.contact_email %}
+                            <a href="{{ usecase.contact_email }}" class="curator__email">{{ usecase.contact_email }}</a>
+                            {% else %}
                             <a href="mailto:{{ usecase.contact_email }}" class="curator__email">{{ usecase.contact_email }}</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
