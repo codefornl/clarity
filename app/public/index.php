@@ -5,6 +5,8 @@
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
+use Aptoma\Twig\Extension\MarkdownExtension;
+use Aptoma\Twig\Extension\MarkdownEngine;
 
 require '../vendor/autoload.php';
 
@@ -33,6 +35,8 @@ $container['view'] = function ($c) {
             $text;
     });
     $view->getEnvironment()->addFunction($translateFunction);
+    $engine = new MarkdownEngine\MichelfMarkdownEngine();
+    $view->addExtension(new MarkdownExtension($engine));
     return $view;
 };
 $container['client'] = function ($c) {

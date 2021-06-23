@@ -270,7 +270,7 @@
   line-height: 1.6;
   margin-bottom: 20px;
 }
-.wrapper__text .introduction {
+.wrapper__text .introduction p {
   font-family: 'Open Sans', sans-serif;
   font-size: 18px;
   line-height: 1.6;

@@ -69,9 +69,9 @@
                     </div>
                 </div>
                 <div class="wrapper__text">
-                    <p class="introduction">{{ usecase.teaser }}</p>
+                    <div class="introduction">{{ usecase.teaser|markdown }}</div>
 
-                    <p>{{ usecase.description }}</p>
+                    {{ usecase.description|markdown }}
 
                     <p><a href="{{ usecase.website }}">{{ usecase.website }}</a></p>
                 </div>
