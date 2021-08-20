@@ -47,6 +47,7 @@ $container['client'] = function ($c) {
     return $client;
 };
 
+require('../private/routers/presi.php');
 require('../private/routers/cbases.php');
 require('../private/routers/usecases.php');
 require('../private/routers/admin.php');

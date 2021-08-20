@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Clarity - show cases</title>
+    <link href="/css/foundation.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link href="/css/additions.css" rel="stylesheet" type="text/css">
+    
+    <meta property='og:url' content='{{ uri }}'>
+    <meta property='og:title' name='title' content="{{ usecase.name }}">
+    <meta property='og:description' name='description' content="{{ usecase.teaser }}">
+    <meta property='og:image' content="https://img.codefor.nl?url={{ (usecase.image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=426&width=640">
+    <link rel='image_src' href="https://img.codefor.nl?url={{ (usecase.image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=426&width=640"/>
+    <meta name='keywords' content="">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:username" content="@codefornl">
+    <meta name="twitter:title" content="{{ usecase.name }}">
+    <meta name="twitter:description" content="{{ usecase.teaser }}">
+    <meta name="twitter:image:src" content="https://img.codefor.nl?url={{ (usecase.image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=426&width=640">
+    
+    <link rel='image_src' href='https://www.codefor.nl/img/larger_CfNL.png'/>
+    <link rel='shortcut icon' type='image/png' href='https://www.codefor.nl/img/larger_CfNL.png'>
+</head>
+<body class="layout presi">
+
+    <style>
+        .presi .layout__row {
+            display: block;
+            padding: 0;
+        }
+        .presi .project-detail {
+            margin: 0;
+        }
+        .presi .layout__project-detail {
+            padding: 0;
+            height: 100vh;
+            display: block;
+        }
+        .presi .project-detail__image {
+            height: 100vh;
+        }
+        .presi aside {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #000000;
+            height: 100vh;
+            opacity: 0.85;
+            color: #ffffff
+        }
+        .presi .layout__project-meta {
+            width: 280px;
+            padding: 0;
+            overflow: hidden;
+        }
+        .presi .layout__project-meta h1,
+        .presi .layout__project-meta h2 {
+            font-size: 16px;
+        }
+        .presi .project-meta__item,
+        .presi .project-meta__curator {
+            margin: 20px;
+        }
+    </style>
+
+    <main class="main-content layout__main-content">
+
+        <article class="project-detail layout__project-detail">
+            <div class="project-detail__image"
+                data-original-img="{{ usecase.image }}"
+                style="background-image: url(https://img.codefor.nl?url={{ (usecase.image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=426&width=640)">
+
+                <div class="project-detail__overlay">
+                    <h2 class="project-detail__location">{{ cbase.name }}</h2>
+                    <h1 class="project-detail__title">{{ usecase.name }}</h1>
+                </div>
+            </div>
+        </article>
+
+        <aside class="project-meta layout__project-meta">
+
+            <div class="project-meta__item">
+                <h1 class="project-detail__title">{{ usecase.organisation }}</h1>
+                <h2 class="project-detail__location">({{ usecase.country }})</h2>
+            </div>
+
+            <div class="project-meta__item">
+                <h3 class="project-meta__header">{{ translate("Category", usecase._embedded.cbase.language) }}</h3>
+                <p class="project-meta__text">{{ usecase.category }}</p>
+            </div>
+
+            <div class="project-meta__item">
+                <h3 class="project-meta__header">{{ translate("Type", usecase._embedded.cbase.language) }}</h3>
+                <p class="project-meta__text">{{ usecase.type }}</p>
+            </div>
+
+            <div class="project-meta__item">
+                <h3 class="project-meta__header">{{ translate("Tools", usecase._embedded.cbase.language) }}</h3>
+                <a href="{{ usecase.download }}" class="project-meta__link">{{ usecase.download }}</a>
+            </div>
+
+            <div class="project-meta__curator">
+                <div class="curator">
+                    <img
+                        data-original-img="{{ usecase.contact_image }}"
+                        src="https://img.codefor.nl?url={{ (usecase.contact_image|default('https://clarity.codefor.nl/img/One_black_Pixel.png'))|url_encode }}&height=80&width=80" class="curator__avatar">
+                    <div class="curator__contact">
+                        <h3 class="curator__name">{{ usecase.contact_name }}</h3>
+                        <div class="curator__badge">{{ translate("contact", usecase._embedded.cbase.language) }}</div>
+                        <a href="mailto:{{ usecase.contact_email }}" class="curator__email">{{ usecase.contact_email }}</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-meta__item" style="font-family: Arial; position: absolute; bottom: 20px; text-align: center; width: 100%; margin: 0">
+                <a id="link-prev" href="?page={{ prev }}">← vorige</a> |
+                <a id="link-next" href="?page={{ next }}">volgende →</a><br>
+                <br>
+                <a id="link-close" href="/cbase/{{ cbase.slug }}#{{ usecase.slug }}">presentatiemodus sluiten ✖</a>
+            </div>
+
+        </aside>
+
+    </main>
+
+    <script>
+        document.onkeydown = function (e) {
+            e = e || window.event;
+            switch (e.key) {
+                case 'ArrowLeft': document.getElementById('link-prev').click(); break;
+                case 'ArrowRight': document.getElementById('link-next').click(); break;
+                case 'Escape': e.preventDefault(); document.getElementById('link-close').click(); break;
+            }
+        };
+    </script>
+</body>
+</html>
